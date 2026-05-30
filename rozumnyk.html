@@ -211,6 +211,7 @@
   .summary-a{font-weight:600;white-space:nowrap}
   .summary-a.ok{color:var(--sage)}.summary-a.partial{color:#8a6a00}.summary-a.bad{color:var(--crimson)}.summary-a.skipped{color:#aaa}
   .results-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+  .site-footer{text-align:center;padding:8px 20px;font-size:.7rem;color:#999;border-top:1px solid #e8e5dc;background:var(--paper)}
   @media print {
     header, #catalogScreen, #identityScreen, #quizScreen, #timeUpOverlay,
     #studentResultCard, .no-print { display:none !important; }
@@ -244,7 +245,6 @@
   <div class="logo"><span class="rozu">Роз</span><span class="mnyk">умник</span><span class="dot"></span></div>
   <div class="timer-badge" id="timerBadge" style="display:none">⏱ <span id="timerNum">45</span>с</div>
   <div class="header-meta" id="headerMeta">Інтелектуальне опитування</div>
-  <div style="font-size:.65rem;color:#555;margin-left:auto;white-space:nowrap">© 2026 Ліцей №3</div>
 </header>
 
 <!-- SCREEN 0: CATALOG -->
@@ -1120,7 +1120,7 @@ function autoSkip() {
 function nextQuestion() {
   if (!answered && selectedAnswers.length>0) { revealAnswer(shuffledQuestions[currentIdx]); return; }
   currentIdx++;
-  if (currentIdx >= shuffledQuestions.length) showResults();
+  if (currentIdx >= shuffledQuestions.length) { stopInactivityDetector(); showResults(); return; }
   else {
     renderQuestion();
     const qb = document.getElementById('questionBox');
@@ -1135,7 +1135,9 @@ function nextQuestion() {
 // ⚙️ Щоб показати правильні відповіді учню — видаліть коментар
 //    "Student sees only summary stats" і додайте розбір питань.
 function showResults() {
-  stopTimer(); showScreen('resultsScreen');
+  stopTimer();
+  document.getElementById('timerBadge').style.display = 'none';
+  showScreen('resultsScreen');
   const n = shuffledQuestions.length;
   const ppq = MAX_SCORE / n;
   let raw = 0;
@@ -1387,6 +1389,7 @@ async function sendResultsByEmail(scaled, ppq, correct, partial, wrong, skipped)
   </div>
 
 </div>
+<footer class="site-footer no-print">© 2026 Радомишльський ліцей №3 v3.0</footer>
 </body></html>`;
 
   const emailSubject = `Розумник: ${name} \u00b7 ${subject} \u00b7 ${scaled} з ${MAX_SCORE} б. (${pct}%)`;
