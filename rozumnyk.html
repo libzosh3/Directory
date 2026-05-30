@@ -1354,10 +1354,24 @@ async function sendResultsByEmail(scaled, ppq, correct, partial, wrong, skipped)
         <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:80px">Правильно</th>
         <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:60px">Результат</th>
         <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:44px">Бали</th>
+          <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:60px">Маркер</th>
       </tr>
     </thead>
     <tbody>${tableRows}</tbody>
   </table>
+
+  <!-- Розшифровка і рекомендована оцінка -->
+  ${suspiciousCount > 0 ? `
+  <div style="margin:8px 0;background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:5px 8px;font-size:9px;color:#856404">
+    <strong>⚠️ Увага:</strong> Зафіксовано ${suspiciousCount} підозрілих пауз (бездіяльність >22 сек).<br>
+    Рекомендована оцінка: ${Math.max(0, Math.round(results.reduce((s,r)=>s+(r.skipped?0:r.partialRatio*ppq*(r.suspicious?0.25:1)),0)/results.length*(11/ppq)))} з 11
+    (за питання де зафіксована пауза >22 сек — бал знижено на 75%).
+  </div>` : ''}
+  <div style="margin:6px 0;font-size:8px;color:#888">
+    🟢 — відповідь без підозрілої паузи (норма) &nbsp;&nbsp;
+    🔴 — пауза &gt;22 сек (можливе звернення до сторонніх джерел) &nbsp;&nbsp;
+    — — питання пропущено
+  </div>
 
   <!-- Підвал -->
   <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #ccc;padding-top:8px;font-size:9px;color:#aaa">
