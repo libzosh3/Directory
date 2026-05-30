@@ -1191,7 +1191,7 @@ function showResults() {
 
 // ── ВІДПРАВКА НА GOOGLE SHEETS + DRIVE ───────────────
 async function sendResultsToSheets(scaled, ppq, correct, wrong, skipped) {
-  const APPS_URL = 'https://script.google.com/macros/s/AKfycbwGo-zpfuyasI-cnOdARvcTTJS-6us-OaPA7JuIiSsAt8mWBlaZs9znurXz8PsG8JOEyg/exec';
+  const APPS_URL = 'https://script.google.com/macros/s/AKfycbxWwDBeLDSKfBcYbmx6oWijrkzXzzGxWIALb_pxGmSbQAc5a5koGXHSkEzXqVvEfmbDjQ/exec';
   try {
     const recScore = results.reduce((sum, r) => {
       if (r.skipped) return sum;
