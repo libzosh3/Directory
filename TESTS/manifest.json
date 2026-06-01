@@ -754,5 +754,222 @@
     "subject": "Зарубіжна література",
     "grade": 11,
     "title": "Джойс «Джакомо Джойс» / Камю «Чума»"
+  },
+  {
+    "file": "zakhyst_11_m4_tccc_protokoly.xlsx",
+    "id": "zakhyst_11_m4_tccc",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Ознайомлення з протоколами ТССС"
+  },
+  {
+    "file": "zakhyst_11_m4_aptechka.xlsx",
+    "id": "zakhyst_11_m4_aptechka",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Склад аптечки для першої медичної допомоги"
+  },
+  {
+    "file": "zakhyst_11_m4_try_fazy.xlsx",
+    "id": "zakhyst_11_m4_try_fazy",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Правила поводження при трьох фазах ТССС"
+  },
+  {
+    "file": "zakhyst_11_m4_peresuvannia_poranenoho.xlsx",
+    "id": "zakhyst_11_m4_peresuvannia",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Переміщення пораненого із зони прямої загрози"
+  },
+  {
+    "file": "zakhyst_11_m4_march.xlsx",
+    "id": "zakhyst_11_m4_march",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Надання допомоги в тактичних умовах. Алгоритм MARCH"
+  },
+  {
+    "file": "zakhyst_11_m4_krovotecha_oznaky.xlsx",
+    "id": "zakhyst_11_m4_krovotecha",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Ознаки критичної кровотечі. Способи зупинки"
+  },
+  {
+    "file": "zakhyst_11_m4_turniket_robota.xlsx",
+    "id": "zakhyst_11_m4_turniket_robota",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Ознайомлення з роботою турнікетів"
+  },
+  {
+    "file": "zakhyst_11_m4_turniket_nakladannia.xlsx",
+    "id": "zakhyst_11_m4_turniket_naklad",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Правила накладання турнікетів"
+  },
+  {
+    "file": "zakhyst_11_m4_tamponuvannia.xlsx",
+    "id": "zakhyst_11_m4_tampon",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Правила тампонування поранення"
+  },
+  {
+    "file": "zakhyst_11_m4_dykhalni_shliakhy.xlsx",
+    "id": "zakhyst_11_m4_dykhalni",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Контроль прохідності дихальних шляхів"
+  },
+  {
+    "file": "zakhyst_11_m4_ohliad_postrazhdaloho.xlsx",
+    "id": "zakhyst_11_m4_ohliad",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Огляд постраждалого. Стан свідомості. Гіпотермія"
+  },
+  {
+    "file": "zakhyst_11_m4_boiovi_medyky.xlsx",
+    "id": "zakhyst_11_m4_medyky",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 4. Військові професії. Бойові медики"
+  },
+  {
+    "file": "zakhyst_11_m5_nadzv_sytuatsii.xlsx",
+    "id": "zakhyst_11_m5_nadzv",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Надзвичайні ситуації. Класифікація. Воєнний стан"
+  },
+  {
+    "file": "zakhyst_11_m5_nablyzhenia_boiovykh_dii.xlsx",
+    "id": "zakhyst_11_m5_nablyzhenia",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Поведінка в умовах наближення бойових дій"
+  },
+  {
+    "file": "zakhyst_11_m5_evakuatsiia.xlsx",
+    "id": "zakhyst_11_m5_evakuatsiia",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Евакуація цивільного населення"
+  },
+  {
+    "file": "zakhyst_11_m5_obstril.xlsx",
+    "id": "zakhyst_11_m5_obstril",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Порядок дій під час обстрілу та авіаційного нальоту"
+  },
+  {
+    "file": "zakhyst_11_m5_vybuhonebezpeka.xlsx",
+    "id": "zakhyst_11_m5_vybuhoneb",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Попередження ризиків від вибухонебезпечних предметів"
+  },
+  {
+    "file": "zakhyst_11_m5_zbroia_masovoho_urazhenia.xlsx",
+    "id": "zakhyst_11_m5_zmu",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Властивості ядерної, хімічної, біологічної зброї"
+  },
+  {
+    "file": "zakhyst_11_m5_zakhysni_vlastyvosti.xlsx",
+    "id": "zakhyst_11_m5_zakhysni",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Захисні властивості споруд, техніки та місцевості"
+  },
+  {
+    "file": "zakhyst_11_m5_terakt.xlsx",
+    "id": "zakhyst_11_m5_terakt",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Терористичні акти. Порядок дій"
+  },
+  {
+    "file": "zakhyst_11_m5_psykholohichna_stiikist.xlsx",
+    "id": "zakhyst_11_m5_psykho",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Психологічна стійкість та саморегуляція"
+  },
+  {
+    "file": "zakhyst_11_m5_samodopomoha.xlsx",
+    "id": "zakhyst_11_m5_samodopomoha",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Само- та взаємодопомога при паніці, ступорі, агресії"
+  },
+  {
+    "file": "zakhyst_11_m5_vyzhyvannia.xlsx",
+    "id": "zakhyst_11_m5_vyzhyvannia",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Основи та принципи виживання в екстремальних умовах"
+  },
+  {
+    "file": "zakhyst_11_m5_tryvozhny_naplichnyk.xlsx",
+    "id": "zakhyst_11_m5_naplichnyk",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Тривожний наплічник. Одяг та засоби для екстремальних умов"
+  },
+  {
+    "file": "zakhyst_11_m5_ukryttia.xlsx",
+    "id": "zakhyst_11_m5_ukryttia",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 5. Вибір місця та обладнання укриттів. Вогонь, вода, харчування"
+  },
+  {
+    "file": "zakhyst_11_m6_zakhyst_yak_vybir.xlsx",
+    "id": "zakhyst_11_m6_vybir",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 6. Захист України як усвідомлений вибір"
+  },
+  {
+    "file": "zakhyst_11_m6_tsinnosti.xlsx",
+    "id": "zakhyst_11_m6_tsinnosti",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 6. Воля. Гідність. Самобутність. Свобода"
+  },
+  {
+    "file": "zakhyst_11_m6_hromadianske_suspilstvo.xlsx",
+    "id": "zakhyst_11_m6_hrom",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 6. Роль громадянського суспільства в обороноздатності"
+  },
+  {
+    "file": "zakhyst_11_m6_volonterstvo.xlsx",
+    "id": "zakhyst_11_m6_volonter",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 6. Громадський активізм. Волонтерський рух"
+  },
+  {
+    "file": "zakhyst_11_m6_talant_v_oboroni.xlsx",
+    "id": "zakhyst_11_m6_talant",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 6. Способи реалізувати свій талант в обороні України"
+  },
+  {
+    "file": "zakhyst_11_m6_veterany.xlsx",
+    "id": "zakhyst_11_m6_veterany",
+    "subject": "Захист України",
+    "grade": 11,
+    "title": "Модуль 6. Адаптація суспільства до потреб ветеранів"
   }
 ]
