@@ -971,5 +971,138 @@
     "subject": "Захист України",
     "grade": 11,
     "title": "Модуль 6. Адаптація суспільства до потреб ветеранів"
+  },
+  {
+    "file": "zakhyst_10_m4_tccc_protokoly.xlsx",
+    "id": "zakhyst_10_m6_tccc",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Ознайомлення з протоколами ТССС. Склад аптечки"
+  },
+  {
+    "file": "zakhyst_10_m4_aptechka.xlsx",
+    "id": "zakhyst_10_m6_aptechka",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Склад аптечки для першої медичної допомоги"
+  },
+  {
+    "file": "zakhyst_10_m4_try_fazy.xlsx",
+    "id": "zakhyst_10_m6_try_fazy",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Правила поводження при трьох фазах ТССС"
+  },
+  {
+    "file": "zakhyst_10_m4_peresuvannia_poranenoho.xlsx",
+    "id": "zakhyst_10_m6_peresuvannia",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Переміщення пораненого із зони прямої загрози"
+  },
+  {
+    "file": "zakhyst_10_m4_march.xlsx",
+    "id": "zakhyst_10_m6_march",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Надання допомоги в тактичних умовах. Алгоритм MARCH"
+  },
+  {
+    "file": "zakhyst_10_m4_krovotecha_oznaky.xlsx",
+    "id": "zakhyst_10_m6_krovotecha",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Ознаки критичної кровотечі. Способи зупинки"
+  },
+  {
+    "file": "zakhyst_10_m4_turniket_robota.xlsx",
+    "id": "zakhyst_10_m6_turniket_r",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Ознайомлення з роботою турнікетів"
+  },
+  {
+    "file": "zakhyst_10_m4_turniket_nakladannia.xlsx",
+    "id": "zakhyst_10_m6_turniket_n",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Правила накладання турнікетів"
+  },
+  {
+    "file": "zakhyst_10_m4_tamponuvannia.xlsx",
+    "id": "zakhyst_10_m6_tampon",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Правила тампонування поранення"
+  },
+  {
+    "file": "zakhyst_10_m4_dykhalni_shliakhy.xlsx",
+    "id": "zakhyst_10_m6_dykhalni",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Контроль прохідності дихальних шляхів"
+  },
+  {
+    "file": "zakhyst_10_m4_ohliad_postrazhdaloho.xlsx",
+    "id": "zakhyst_10_m6_ohliad",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Огляд постраждалого. Стан свідомості. Гіпотермія"
+  },
+  {
+    "file": "zakhyst_10_m4_boiovi_medyky.xlsx",
+    "id": "zakhyst_10_m6_medyky",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 6. Військові професії. Бойові медики"
+  },
+  {
+    "file": "zakhyst_10_m2_zbroia.xlsx",
+    "id": "zakhyst_10_m3_zbroia",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 3. Класифікація та будова вогнепальної зброї"
+  },
+  {
+    "file": "zakhyst_10_m2_strilecka.xlsx",
+    "id": "zakhyst_10_m3_strilecka",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 3. Стрілецька справа"
+  },
+  {
+    "file": "zakhyst_10_m2_peremishchennia.xlsx",
+    "id": "zakhyst_10_m4_peremisc",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 4. Техніка переміщення у складі бойової групи"
+  },
+  {
+    "file": "zakhyst_10_m2_zahorodzhennia.xlsx",
+    "id": "zakhyst_10_m4_zahorod",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 4. Подолання інженерних загороджень. Смуга перешкод"
+  },
+  {
+    "file": "zakhyst_10_m2_peredacha_info.xlsx",
+    "id": "zakhyst_10_m4_info",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 4. Передача інформації в умовах бойових дій"
+  },
+  {
+    "file": "zakhyst_10_m2_radio_pole.xlsx",
+    "id": "zakhyst_10_m4_radio",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 4. Радіозв'язок на полі бою. Правила ведення"
+  },
+  {
+    "file": "zakhyst_10_m1_radiozviazok.xlsx",
+    "id": "zakhyst_10_m4_radioosnovy",
+    "subject": "Захист України",
+    "grade": 10,
+    "title": "Модуль 4. Основи радіозв'язку. Види та способи налагодження"
   }
 ]
