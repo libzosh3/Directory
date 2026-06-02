@@ -354,7 +354,7 @@
       </div>
       <div class="filter-block" id="filterClassBlock" style="display:none">
         <label>🎓 Клас</label>
-        <select id="filterClass" onchange="filterTests()">
+        <select id="filterClass" onchange="updateModuleFilter(); filterTests()">
           <option value="">— Усі класи —</option>
           <option value="5">5 клас</option>
           <option value="6">6 клас</option>
@@ -364,6 +364,12 @@
           <option value="10">10 клас</option>
           <option value="11">11 клас</option>
           <option value="12">12 клас</option>
+        </select>
+      </div>
+      <div class="filter-block" id="filterModuleBlock" style="display:none">
+        <label>🧩 Модуль</label>
+        <select id="filterModule" onchange="filterTests()">
+          <option value="">— Усі модулі —</option>
         </select>
       </div>
     </div>
@@ -749,6 +755,12 @@ function updateClassFilter() {
   const classBlock = document.getElementById('filterClassBlock');
   const sel     = document.getElementById('filterClass');
 
+  // скинути фільтр модуля при зміні предмету
+  const modBlock = document.getElementById('filterModuleBlock');
+  const modSel   = document.getElementById('filterModule');
+  modBlock.style.display = 'none';
+  modSel.value = '';
+
   if (!subj) {
     classBlock.style.display = 'none';
     document.getElementById('testsSection').style.display = 'none';
@@ -771,6 +783,31 @@ function updateClassFilter() {
 }
 
 
+// ── ДИНАМІЧНИЙ ФІЛЬТР МОДУЛІВ ──────────────────────────
+// Показує фільтр модуля лише коли в обраних предметі+класі є модулі.
+// Список модулів будується автоматично з manifest.
+function updateModuleFilter() {
+  const subj  = document.getElementById('filterSubject').value;
+  const grade = parseInt(document.getElementById('filterClass').value) || 0;
+  const block = document.getElementById('filterModuleBlock');
+  const sel   = document.getElementById('filterModule');
+
+  sel.value = '';
+  if (!subj || !grade) { block.style.display = 'none'; return; }
+
+  const mods = [...new Set(
+    manifestTests
+      .filter(t => t.subject === subj && t.grade === grade && Number.isInteger(t.module))
+      .map(t => t.module)
+  )].sort((a,b) => a-b);
+
+  if (!mods.length) { block.style.display = 'none'; return; }
+
+  sel.innerHTML = '<option value="">— Усі модулі —</option>'
+    + mods.map(m => `<option value="${m}">Модуль ${m}</option>`).join('');
+  block.style.display = 'block';
+}
+
 function filterTests() {
   const subj  = document.getElementById('filterSubject').value;
   const grade = parseInt(document.getElementById('filterClass').value) || 0;
@@ -783,6 +820,9 @@ function filterTests() {
   let pool = [...manifestTests];
   if (subj)  pool = pool.filter(t => t.subject === subj);
   if (grade) pool = pool.filter(t => t.grade  === grade);
+
+  const moduleVal = document.getElementById('filterModule').value;
+  if (moduleVal) pool = pool.filter(t => t.module === parseInt(moduleVal));
 
   filteredPool = pool;
   selectedTest = null;
