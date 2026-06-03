@@ -406,7 +406,8 @@
       <b>Система оцінювання (max 11 балів):</b><br>
       • Одна відповідь — повний бал за питання<br>
       • Кілька відповідей — частковий залік пропорційно обраним правильним<br>
-      • Бали масштабуються до 11 незалежно від кількості питань
+      • Бали масштабуються до 11 незалежно від кількості питань<br>
+      <b style="color:var(--ink)">⏱ Цей тест:</b> <span id="timingInfo"></span>
     </div>
     <div id="identityError" class="error-msg"></div>
     <button class="btn btn-gold btn-full" onclick="startQuiz()">Розпочати тест ▶</button>
@@ -562,7 +563,7 @@
     </div>
     <div style="margin-bottom:8px;font-size:8.5px;color:#888">
       🟢 — відповідь без підозрілої паузи (норма) &nbsp;&nbsp;
-      🔴 — пауза &gt;22 сек (можливе звернення до сторонніх джерел) &nbsp;&nbsp;
+      🔴 — підозріла пауза (можливе звернення до сторонніх джерел) &nbsp;&nbsp;
       — — питання пропущено
     </div>
     <div id="tpf-keylog-note" style="display:none;margin-bottom:8px;background:#fdf0ef;border:1px solid #f0b8b2;border-radius:4px;padding:5px 8px;font-size:9px;color:#c0392b">
@@ -583,7 +584,7 @@
 <div class="overlay" id="timeUpOverlay">
   <div class="modal">
     <h3>⏰ Час вийшов!</h3>
-    <p>На це питання відведено 45 секунд. Автоматичний перехід до наступного...</p>
+    <p>Час на це питання вичерпано. Автоматичний перехід до наступного...</p>
   </div>
 </div>
 
@@ -642,7 +643,30 @@ let questionStartTime = 0;  // час початку питання
 let lastActivityTime  = 0;  // час останньої активності
 let currentPauseSecs  = 0;  // поточна пауза в секундах
 let questionSuspicious = false; // чи є підозріла пауза на поточному питанні
-const INACTIVITY_LIMIT = 22;   // секунд без активності = підозра
+let inactivitySecs = 22;    // поріг підозрілої бездіяльності (залежить від класу)
+let perQuestionSecs = 45;   // час на одне питання (залежить від класу)
+// ── Диференційований таймер за класом тесту ───────────────────────
+// 5–7 кл → 45с/22с · 8–9 кл → 30с/16с · 10–11 кл → 25с/13с (12 кл — як 11, перспектива)
+function gradeBand(grade) {
+  const g = parseInt(grade, 10) || 0;
+  if (g >= 10) return { perQuestion: 25, inactivity: 13 };
+  if (g >= 8)  return { perQuestion: 30, inactivity: 16 };
+  return { perQuestion: 45, inactivity: 22 };
+}
+function applyTimingForClass(grade) {
+  const b = gradeBand(grade);
+  perQuestionSecs = b.perQuestion;
+  inactivitySecs  = b.inactivity;
+}
+function updateTimingInfo() {
+  const el = document.getElementById('timingInfo');
+  if (!el) return;
+  const count = parseInt(currentTestMeta['Питань'], 10) || 0;
+  if (!count) { el.textContent = perQuestionSecs + ' с на питання'; return; }
+  const total = perQuestionSecs * count;
+  const mins = Math.floor(total / 60), secs = total % 60;
+  el.textContent = count + ' питань · ~' + mins + ' хв' + (secs ? ' ' + secs + ' с' : '') + ' · ' + perQuestionSecs + ' с на питання';
+}
 
 // ── Детектор бездіяльності ────────────────────────────────────────
 function startInactivityDetector() {
@@ -653,7 +677,7 @@ function startInactivityDetector() {
   inactivityTimer = setInterval(() => {
     if (answered) return;
     const pause = (Date.now() - lastActivityTime) / 1000;
-    if (pause >= INACTIVITY_LIMIT && !questionSuspicious) {
+    if (pause >= inactivitySecs && !questionSuspicious) {
       questionSuspicious = true;
       suspiciousCount++;
     }
@@ -920,6 +944,8 @@ async function useSelectedTest() {
 
     allQuestions = questions;
     currentTestMeta = meta;
+    applyTimingForClass(grade);
+    updateTimingInfo();
     currentTestTitle = `${SUBJECT_ICONS[subject] || ''} ${title}`;
     document.getElementById('headerMeta').textContent = currentTestTitle;
     document.getElementById('chosenTestBanner').textContent =
@@ -1185,7 +1211,7 @@ function revealAnswer(q) {
 //    if (timerLeft <= 10) → і if (timerLeft <= 20) →
 function startTimer() {
   document.getElementById('timerBadge').style.display = 'flex';
-  timerLeft = 45; updateTimerUI();
+  timerLeft = perQuestionSecs; updateTimerUI();
   timerInterval = setInterval(() => { timerLeft--; updateTimerUI(); if (timerLeft<=0) { stopTimer(); autoSkip(); } }, 1000);
 }
 function stopTimer() { clearInterval(timerInterval); timerInterval = null; }
