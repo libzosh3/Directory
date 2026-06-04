@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- ╔══════════════════════════════════════════════════════════════════════╗
-     ║  ТЯМУЩИЙ — Інтелектуальна тестова система v4.0                     ║
+     ║  ТЯМУЩИЙ — Інтелектуальна тестова система v5.0                     ║
      ║  Один файл + папка TESTS/ з xlsx-тестами та manifest.json          ║
      ║                                                                     ║
      ║  ⚠️  ВАЖЛИВО: не відкривайте цей файл напряму через file://        ║
@@ -598,7 +598,7 @@
       <strong>🔀 Залишав вікно тесту:</strong> <span id="tpf-window-text"></span>
     </div>
     <div class="tpf-footer">
-      <div>Тямущий v4.0 · <span id="tpf-footer-date"></span></div>
+      <div>Тямущий v5.0 · <span id="tpf-footer-date"></span></div>
       <div class="tpf-sign">Підпис вчителя</div>
     </div>
 
@@ -1373,6 +1373,7 @@ async function sendResultsToSheets(scaled, ppq, correct, wrong, skipped) {
       keyLog:           keyLog,
       windowLeaveCount: windowLeaveCount,
       windowAwayMs:     windowAwayMs,
+      protocolHtml:     buildProtocolHtml(),
       results:          results.map(r => ({
         text:        r.text,
         selected:    r.selected ? r.selected.join(',') : '—',
@@ -1451,122 +1452,7 @@ async function sendResultsByEmail(scaled, ppq, correct, partial, wrong, skipped)
   }).join('');
 
   // HTML-лист — повна копія друкованої форми вчителя
-  const html_body = `<!DOCTYPE html>
-<!-- © 2026 Радомишльський ліцей №3. Всі права захищені. Автори: Хоменко Олексій, Устименко Іван, Наливайко Олена -->
-<html lang="uk"><head><meta charset="UTF-8">
-<title>Тямущий — ${name} · ${subject}</title></head>
-<body style="margin:0;padding:20px;background:#f4f3ef;font-family:Arial,sans-serif;font-size:12px;color:#111">
-<div style="max-width:720px;margin:0 auto;background:#fff;padding:20px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.1)">
-
-  <!-- Шапка -->
-  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2.5px solid #0D0D14;padding-bottom:8px;margin-bottom:12px">
-    <div>
-      <div style="font-size:15px;font-weight:800;letter-spacing:.5px;color:#0D0D14">🎓 ТЯМУЩИЙ — Результати тестування</div>
-      <div style="font-size:10px;color:#888">Форма для вчителя · Архівний екземпляр</div>
-    </div>
-    <div style="font-size:10px;color:#999;text-align:right">${dateStr}</div>
-  </div>
-
-  <!-- Метадані -->
-  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:12px">
-    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa">
-      <div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Прізвище та ім'я</div>
-      <div style="font-size:12px;font-weight:700;margin-top:2px">${name}</div>
-    </div>
-    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa">
-      <div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Клас</div>
-      <div style="font-size:12px;font-weight:700;margin-top:2px">${studentInfo.cls}</div>
-    </div>
-    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa">
-      <div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Предмет</div>
-      <div style="font-size:12px;font-weight:700;margin-top:2px">${subject}</div>
-    </div>
-    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa">
-      <div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Тема тесту</div>
-      <div style="font-size:12px;font-weight:700;margin-top:2px">${topic}</div>
-    </div>
-  </div>
-
-  <!-- Оцінка -->
-  <div style="display:flex;align-items:center;gap:12px;background:#0D0D14;color:#fff;border-radius:6px;padding:10px 16px;margin-bottom:12px">
-    <div style="font-size:32px;font-weight:900;color:#C8A84B;line-height:1">${scaled}</div>
-    <div style="font-size:11px;line-height:1.6">
-      <div style="font-weight:700;font-size:13px">балів з ${MAX_SCORE} можливих</div>
-      <div style="color:#C8A84B">${pct}% правильних відповідей</div>
-    </div>
-    <div style="margin-left:auto;font-size:10px;opacity:.7">Питань: ${n}</div>
-  </div>
-
-  <!-- Статистика -->
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px">
-    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px">
-      <div style="font-size:18px;font-weight:800;color:#2a7a4a">${correct}</div>
-      <div style="font-size:9px;color:#666;margin-top:2px">✓ Правильно</div>
-    </div>
-    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px">
-      <div style="font-size:18px;font-weight:800;color:#b8860b">${partial}</div>
-      <div style="font-size:9px;color:#666;margin-top:2px">◑ Частково</div>
-    </div>
-    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px">
-      <div style="font-size:18px;font-weight:800;color:#c0392b">${wrong}</div>
-      <div style="font-size:9px;color:#666;margin-top:2px">✗ Неправильно</div>
-    </div>
-    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px">
-      <div style="font-size:18px;font-weight:800;color:#aaa">${skipped}</div>
-      <div style="font-size:9px;color:#666;margin-top:2px">⏩ Пропущено</div>
-    </div>
-  </div>
-
-  <!-- Таблиця відповідей -->
-  <table style="width:100%;border-collapse:collapse;font-size:10.5px;margin-bottom:12px">
-    <thead>
-      <tr>
-        <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:24px">#</th>
-        <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px">Питання</th>
-        <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:90px">Відповідь учня</th>
-        <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:80px">Правильно</th>
-        <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:60px">Результат</th>
-        <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:44px">Бали</th>
-          <th style="background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px;width:60px">Маркер</th>
-      </tr>
-    </thead>
-    <tbody>${tableRows}</tbody>
-  </table>
-
-  <!-- Підозрілі клавіші -->
-  ${Object.keys(keyLog).length > 0 ? `
-  <div style="background:#fdf0ef;border:1px solid #f0b8b2;border-radius:4px;padding:5px 8px;margin-bottom:8px;font-size:9px;color:#c0392b">
-    <strong>&#9000; Підозрілі дії з клавіатурою:</strong> ${keyLogSummary()}
-  </div>` : ''}
-
-  <!-- Залишення вікна -->
-  ${windowLeaveCount > 0 ? `
-  <div style="background:#fdf0ef;border:1px solid #f0b8b2;border-radius:4px;padding:5px 8px;margin-bottom:8px;font-size:9px;color:#c0392b">
-    <strong>🔀 Залишав вікно тесту:</strong> ${windowLeaveSummary()}
-  </div>` : ''}
-
-  <!-- Розшифровка і рекомендована оцінка -->
-  ${suspiciousCount > 0 ? `
-  <div style="margin:8px 0;background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:5px 8px;font-size:9px;color:#856404">
-    <strong>⚠️ Увага:</strong> Зафіксовано ${suspiciousCount} підозрілих пауз (бездіяльність >${inactivitySecs} сек).<br>
-    Рекомендована оцінка: ${Math.max(0, Math.round(results.reduce((s,r)=>s+(r.skipped?0:r.partialRatio*ppq*(r.suspicious?0.25:1)),0)/results.length*(11/ppq)))} з 11
-    (за питання де зафіксована пауза >${inactivitySecs} сек — бал знижено на 75%).
-  </div>` : ''}
-  <div style="margin:6px 0;font-size:8px;color:#888">
-    🟢 — відповідь без підозрілої паузи (норма) &nbsp;&nbsp;
-    🔴 — пауза &gt;22 сек (можливе звернення до сторонніх джерел) &nbsp;&nbsp;
-    — — питання пропущено
-  </div>
-
-  <!-- Підвал -->
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #ccc;padding-top:8px;font-size:9px;color:#aaa">
-    <div>Тямущий v4.0 · ${dateStr}</div>
-    <div style="border-top:1px solid #555;width:150px;text-align:center;padding-top:3px;font-size:9px;color:#555">Підпис вчителя</div>
-  </div>
-
-</div>
-<footer class="site-footer no-print">© 2026 Радомишльський ліцей №3 v4.0</footer>
-</body></html>`;
+  const html_body = buildProtocolHtml();
 
   const emailSubject = `Тямущий: ${name} \u00b7 ${subject} \u00b7 ${scaled} з ${MAX_SCORE} б. (${pct}%)`;
 
@@ -1591,92 +1477,98 @@ async function sendResultsByEmail(scaled, ppq, correct, partial, wrong, skipped)
   }
 }
 
+// ── ЄДИНЕ ДЖЕРЕЛО ПРОТОКОЛУ ───────────────────────────
+// buildProtocolInner() — внутрішній HTML протоколу (та сама верстка для форми, email і PDF).
+// buildProtocolHtml()  — повний документ (обгортка) для email та для конвертації у PDF.
+function buildProtocolInner() {
+  const scaled = window._lastScore || 0;
+  const ppq    = window._ppq || 0;
+  const n      = (typeof shuffledQuestions !== 'undefined' && shuffledQuestions) ? shuffledQuestions.length : results.length;
+  const name   = (studentInfo.surname + ' ' + studentInfo.name).trim();
+  const cls    = studentInfo.cls;
+  const subject= selectedTest ? selectedTest.subject : '—';
+  const topic  = selectedTest ? selectedTest.title : (typeof currentTestTitle !== 'undefined' ? currentTestTitle : '—');
+  const correct= results.filter(r=>r.partialRatio===1).length;
+  const partial= results.filter(r=>r.partialRatio>0 && r.partialRatio<1).length;
+  const wrong  = results.filter(r=>r.partialRatio===0 && !r.skipped).length;
+  const skipped= results.filter(r=>r.skipped).length;
+  const pct    = Math.round(scaled / MAX_SCORE * 100);
+  const dateStr= new Date().toLocaleString('uk-UA');
+  const inact  = inactivitySecs;
+  const recScore = results.reduce((sum,r)=>{ if(r.skipped) return sum; const pts=r.partialRatio*ppq; return sum + (r.suspicious?pts*0.25:pts); },0);
+  const recScaleScore = Math.max(0, Math.round(recScore / results.length * (11/ppq)));
+  const realSuspicious = results.filter(r=>r.suspicious && !r.skipped).length;
+  const klSummary = keyLogSummary();
+  const wlSummary = windowLeaveSummary();
+  const TH = 'background:#0D0D14;color:#C8A84B;text-align:left;padding:5px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.3px';
+  const TD = 'padding:4px 7px;border-bottom:1px solid #eee';
+  const rows = results.map((r,i)=>{
+    const sel = r.skipped ? '—' : (r.selected.join(', ') || '—');
+    const cor = r.correct.join(', ');
+    const pts = (r.partialRatio*ppq).toFixed(1);
+    let resCss,resLabel;
+    if(r.skipped){resCss='color:#aaa';resLabel='⏩ пропуск';}
+    else if(r.partialRatio===1){resCss='color:#2a7a4a;font-weight:700';resLabel='✓';}
+    else if(r.partialRatio>0){resCss='color:#b8860b;font-weight:700';resLabel='◑ '+Math.round(r.partialRatio*100)+'%';}
+    else {resCss='color:#c0392b;font-weight:700';resLabel='✗';}
+    const q = r.text.length>70 ? r.text.slice(0,68)+'…' : r.text;
+    const bg = i%2===1 ? 'background:#f9f9f7' : '';
+    return `<tr style="${bg}"><td style="${TD};color:#aaa;font-size:9px">${i+1}</td><td style="${TD};vertical-align:top">${q}</td><td style="${TD};font-weight:600">${sel}</td><td style="${TD};color:#2a7a4a">${cor}</td><td style="${TD};${resCss}">${resLabel}</td><td style="${TD};text-align:center;font-weight:700">${pts}</td><td style="${TD};text-align:center;font-size:11px">${r.skipped?'—':(r.suspicious?'🔴':'🟢')} ${r.skipped?'':(r.answerTime+'с')}</td></tr>`;
+  }).join('');
+  return `<div style="max-width:720px;margin:0 auto;background:#fff;padding:20px;border-radius:8px">
+  <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:2.5px solid #0D0D14;padding-bottom:8px;margin-bottom:12px">
+    <div><div style="font-size:15px;font-weight:800;letter-spacing:.5px;color:#0D0D14">🎓 ТЯМУЩИЙ — Результати тестування</div>
+    <div style="font-size:10px;color:#888">Форма для вчителя · Архівний екземпляр</div></div>
+    <div style="font-size:10px;color:#999;text-align:right">${dateStr}</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:12px">
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa"><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Прізвище та ім&apos;я</div><div style="font-size:12px;font-weight:700;margin-top:2px">${name}</div></div>
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa"><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Клас</div><div style="font-size:12px;font-weight:700;margin-top:2px">${cls}</div></div>
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa"><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Предмет</div><div style="font-size:12px;font-weight:700;margin-top:2px">${subject}</div></div>
+    <div style="border:1px solid #ccc;border-radius:4px;padding:5px 8px;background:#fafafa"><div style="font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.4px">Тема тесту</div><div style="font-size:12px;font-weight:700;margin-top:2px">${topic}</div></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:12px;background:#0D0D14;color:#fff;border-radius:6px;padding:10px 16px;margin-bottom:12px">
+    <div style="font-size:32px;font-weight:900;color:#C8A84B;line-height:1">${scaled}</div>
+    <div style="font-size:11px;line-height:1.6"><div style="font-weight:700;font-size:13px">балів з ${MAX_SCORE} можливих</div><div style="color:#C8A84B">${pct}%</div></div>
+    <div style="margin-left:auto;font-size:10px;opacity:.7">Питань: ${n}</div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px">
+    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px"><div style="font-size:18px;font-weight:800;color:#2a7a4a">${correct}</div><div style="font-size:9px;color:#666;margin-top:2px">✓ Правильно</div></div>
+    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px"><div style="font-size:18px;font-weight:800;color:#b8860b">${partial}</div><div style="font-size:9px;color:#666;margin-top:2px">◑ Частково</div></div>
+    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px"><div style="font-size:18px;font-weight:800;color:#c0392b">${wrong}</div><div style="font-size:9px;color:#666;margin-top:2px">✗ Неправильно</div></div>
+    <div style="border:1px solid #ddd;border-radius:4px;text-align:center;padding:6px 4px"><div style="font-size:18px;font-weight:800;color:#aaa">${skipped}</div><div style="font-size:9px;color:#666;margin-top:2px">⏩ Пропущено</div></div>
+  </div>
+  <table style="width:100%;border-collapse:collapse;font-size:10.5px;margin-bottom:12px"><thead><tr>
+    <th style="${TH};width:24px">#</th><th style="${TH}">Питання</th><th style="${TH};width:90px">Відповідь учня</th><th style="${TH};width:80px">Правильно</th><th style="${TH};width:60px">Результат</th><th style="${TH};width:44px">Бали</th><th style="${TH};width:60px">Маркер</th>
+  </tr></thead><tbody>${rows}</tbody></table>
+  ${realSuspicious > 0 ? `<div style="margin:8px 0;background:#fff3cd;border:1px solid #ffc107;border-radius:4px;padding:5px 8px;font-size:9px;color:#856404"><strong>⚠️ Увага:</strong> Зафіксовано ${realSuspicious} підозрілих пауз (бездіяльність &gt;${inact} сек).</div>
+  <div style="margin:8px 0;background:#f5f5f5;border-radius:4px;padding:5px 8px;font-size:9px;color:#555">Рекомендована оцінка з урахуванням пауз: ${recScaleScore} балів з 11 (за питання де зафіксована пауза &gt;${inact} сек — бал знижено на 75%).</div>` : ''}
+  <div style="margin:6px 0;font-size:8px;color:#888">🟢 — відповідь без підозрілої паузи (норма) &nbsp;&nbsp; 🔴 — підозріла пауза (можливе звернення до сторонніх джерел) &nbsp;&nbsp; — — питання пропущено</div>
+  ${klSummary ? `<div style="background:#fdf0ef;border:1px solid #f0b8b2;border-radius:4px;padding:5px 8px;margin-bottom:8px;font-size:9px;color:#c0392b"><strong>⌨️ Підозрілі дії з клавіатурою:</strong> ${klSummary}</div>` : ''}
+  ${wlSummary ? `<div style="background:#fdf0ef;border:1px solid #f0b8b2;border-radius:4px;padding:5px 8px;margin-bottom:8px;font-size:9px;color:#c0392b"><strong>🔀 Залишав вікно тесту:</strong> ${wlSummary}</div>` : ''}
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;border-top:1px solid #ccc;padding-top:8px;font-size:9px;color:#aaa">
+    <div>Тямущий v5.0 · ${dateStr}</div>
+    <div style="border-top:1px solid #555;width:150px;text-align:center;padding-top:3px;font-size:9px;color:#555">Підпис вчителя</div>
+  </div>
+</div>`;
+}
+function buildProtocolHtml() {
+  return `<!DOCTYPE html>
+<!-- © 2026 Радомишльський ліцей №3 -->
+<html lang="uk"><head><meta charset="UTF-8"><title>Тямущий — протокол тестування</title>
+<style>@page{size:A4;margin:12mm}</style></head>
+<body style="margin:0;padding:16px;background:#fff;font-family:Arial,sans-serif;font-size:12px;color:#111">
+${buildProtocolInner()}
+</body></html>`;
+}
+
 // ── ФОРМА ДЛЯ ВЧИТЕЛЯ (друк) ─────────────────────────
 // Заповнює приховану printable-форму (#teacherPrintForm) даними сесії:
 // метадані учня, оцінка, статистика, таблиця з усіма питаннями і відповідями.
 // Ховає картку учня, показує форму, автоматично відкриває діалог друку.
 // При @media print — всі зайві елементи ховаються, залишається лише форма.
 function printTeacherForm() {
-  const scaled = window._lastScore || 0;
-  const ppq    = window._ppq || 0;
-  const n      = shuffledQuestions.length;
-  const correct= results.filter(r=>r.partialRatio===1).length;
-  const partial= results.filter(r=>r.partialRatio>0&&r.partialRatio<1).length;
-  const wrong  = results.filter(r=>r.partialRatio===0&&!r.skipped).length;
-  const skipped= results.filter(r=>r.skipped).length;
-  const pct    = Math.round(scaled / MAX_SCORE * 100);
-  const dateStr= new Date().toLocaleString('uk-UA');
-
-  // Meta
-  document.getElementById('tpf-name').textContent    = `${studentInfo.surname} ${studentInfo.name}`;
-  document.getElementById('tpf-class').textContent   = studentInfo.cls;
-  document.getElementById('tpf-subject').textContent = selectedTest ? selectedTest.subject : '—';
-  document.getElementById('tpf-topic').textContent   = selectedTest ? selectedTest.title  : currentTestTitle;
-  document.getElementById('tpf-date').textContent    = dateStr;
-  document.getElementById('tpf-footer-date').textContent = dateStr;
-  // Підозрілі клавіші
-  const klSummary = keyLogSummary();
-  if (klSummary) {
-    document.getElementById('tpf-keylog-note').style.display = 'block';
-    document.getElementById('tpf-keylog-text').textContent = klSummary;
-  }
-  const wlSummary = windowLeaveSummary();
-  if (wlSummary) {
-    document.getElementById('tpf-window-note').style.display = 'block';
-    document.getElementById('tpf-window-text').textContent = wlSummary;
-  }
-  document.getElementById('tpf-score').textContent   = scaled;
-  document.getElementById('tpf-pct').textContent     = `${pct}%`;
-  document.getElementById('tpf-questions-count').textContent = `Питань: ${n}`;
-  document.getElementById('tpf-s-ok').textContent    = correct;
-  document.getElementById('tpf-s-part').textContent  = partial;
-  document.getElementById('tpf-s-bad').textContent   = wrong;
-  document.getElementById('tpf-s-skip').textContent  = skipped;
-
-  // Table rows
-  const tbody = document.getElementById('tpf-tbody');
-  tbody.innerHTML = results.map((r, i) => {
-    const sel = r.skipped ? '—' : r.selected.join(', ');
-    const cor = r.correct.join(', ');
-    const pts = (r.partialRatio * ppq).toFixed(1);
-    let resCls, resLabel;
-    if (r.skipped)            { resCls='tpf-skip'; resLabel='⏩ пропуск'; }
-    else if (r.partialRatio===1) { resCls='tpf-ok';  resLabel='✓'; }
-    else if (r.partialRatio>0)   { resCls='tpf-part';resLabel=`◑ ${Math.round(r.partialRatio*100)}%`; }
-    else                         { resCls='tpf-bad'; resLabel='✗'; }
-    const q = r.text.length > 70 ? r.text.slice(0,68)+'…' : r.text;
-    return `<tr>
-      <td style="color:#aaa;font-size:9px">${i+1}</td>
-      <td>${q}</td>
-      <td style="font-weight:600">${sel}</td>
-      <td style="color:#2a7a4a">${cor}</td>
-      <td class="${resCls}">${resLabel}</td>
-      <td style="text-align:center;font-weight:700">${pts}</td>
-      <td style="text-align:center;font-size:12px">
-        ${r.skipped ? '—' : (r.suspicious ? '🔴' : '🟢')} ${r.skipped ? '' : r.answerTime + 'с'}
-      </td>
-    </tr>`;
-  }).join('');
-
-  // Рекомендована оцінка і підозрілі паузи
-  const recScore = results.reduce((sum, r) => {
-    if (r.skipped) return sum;
-    const pts = r.partialRatio * ppq;
-    return sum + (r.suspicious ? pts * 0.25 : pts);
-  }, 0);
-  const recScaleScore = Math.round(recScore / results.length * (11 / ppq));
-
-  const realSuspicious = results.filter(r => r.suspicious && !r.skipped).length;
-  if (realSuspicious > 0) {
-    document.getElementById('tpf-suspicious-note').style.display = 'block';
-    document.getElementById('tpf-suspicious-text').textContent =
-      'Зафіксовано ' + realSuspicious + ' підозрілих пауз (бездіяльність >' + inactivitySecs + ' сек).';
-    document.getElementById('tpf-recommended').style.display = 'block';
-    document.getElementById('tpf-recommended-text').textContent =
-      'Рекомендована оцінка з урахуванням пауз: ' + Math.max(0, recScaleScore) + ' балів з 11 (за питання де зафіксована пауза >' + inactivitySecs + ' сек — бал знижено на 75%).';
-  }
-
-  // Show form, hide student card
+  document.getElementById('teacherPrintForm').innerHTML = buildProtocolInner();
   document.getElementById('studentResultCard').style.display = 'none';
   document.getElementById('teacherPrintForm').style.display  = 'block';
   setTimeout(() => window.print(), 300);
