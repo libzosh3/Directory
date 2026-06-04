@@ -1368,14 +1368,20 @@ async function sendResultsToSheets(scaled, ppq, correct, wrong, skipped) {
       wrong:            wrong,
       suspiciousCount:  suspiciousCount,
       recommendedScore: recScaled,
+      questionsCount:   results.length,
+      inactivityLimit:  inactivitySecs,
+      keyLog:           keyLog,
+      windowLeaveCount: windowLeaveCount,
+      windowAwayMs:     windowAwayMs,
       results:          results.map(r => ({
-        text:       r.text,
-        selected:   r.selected ? r.selected.join(',') : '—',
-        correct:    r.correct ? r.correct.join(',') : '—',
-        points:     +(r.partialRatio * ppq).toFixed(1),
-        answerTime: r.answerTime || 0,
-        suspicious: r.suspicious || false,
-        skipped:    r.skipped || false,
+        text:        r.text,
+        selected:    r.selected ? r.selected.join(',') : '—',
+        correct:     r.correct ? r.correct.join(',') : '—',
+        partialRatio: r.partialRatio,
+        points:      +(r.partialRatio * ppq).toFixed(1),
+        answerTime:  r.answerTime || 0,
+        suspicious:  r.suspicious || false,
+        skipped:     r.skipped || false,
       }))
     };
     await fetch(APPS_URL, {
