@@ -1568,7 +1568,11 @@ ${buildProtocolInner()}
 // Ховає картку учня, показує форму, автоматично відкриває діалог друку.
 // При @media print — всі зайві елементи ховаються, залишається лише форма.
 function printTeacherForm() {
-  document.getElementById('teacherPrintForm').innerHTML = buildProtocolInner();
+  document.getElementById('teacherPrintForm').innerHTML = buildProtocolInner() +
+    `<div class="no-print" style="margin-top:20px;text-align:center">
+      <button class="btn btn-primary" onclick="window.print()">🖨 Друк</button>
+      <button class="btn" style="margin-left:8px;background:#f5f2ea" onclick="document.getElementById('teacherPrintForm').style.display='none';document.getElementById('studentResultCard').style.display='block'">← Назад</button>
+    </div>`;
   document.getElementById('studentResultCard').style.display = 'none';
   document.getElementById('teacherPrintForm').style.display  = 'block';
   setTimeout(() => window.print(), 300);
