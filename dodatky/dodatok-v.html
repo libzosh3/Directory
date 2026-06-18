@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Додаток В. Каталог відкритих джерел — Захист України 10–11 клас</title>
+<style>
+:root {
+  --ua-blue: #003087;
+  --ua-yellow: #FFD700;
+  --olive: #4A5240;
+  --olive-light: #6B7A5A;
+  --sand: #F5F0E8;
+  --ink: #1C1C1C;
+  --white: #FFFFFF;
+  --divider: #C8C0B0;
+  --accent-red: #C0392B;
+  --accent-green: #2E7D32;
+  --card-bg: #FDFBF7;
+  --info-bg: #E8F0FE;
+  --info-border: #4A90D9;
+  --warn-bg: #FFF8E1;
+  --warn-border: #F9A825;
+  --pract-bg: #E8F5E9;
+  --pract-border: #2E7D32;
+  --tip-bg: #F3E5F5;
+  --tip-border: #7B1FA2;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Segoe UI', 'Arial', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--sand);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15.5px;
+}
+
+/* TOP BAR */
+.topbar {
+  background: var(--ua-blue);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.78rem;
+  padding: 8px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar a { color: var(--ua-yellow); text-decoration: none; }
+.topbar a:hover { text-decoration: underline; }
+
+.topbar-stripe { height: 4px; background: var(--ua-yellow); }
+
+/* HEADER */
+.module-header {
+  background: linear-gradient(135deg, var(--ua-blue) 0%, #001a52 70%, var(--olive) 100%);
+  color: var(--white);
+  padding: 48px 32px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--ua-yellow);
+}
+
+.module-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.module-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ua-yellow);
+  margin-bottom: 12px;
+}
+
+.module-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  max-width: 780px;
+}
+
+.module-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.meta-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-pill span { opacity: 0.7; }
+
+/* LAYOUT */
+.page-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: sticky;
+  top: 16px;
+}
+
+.nav-block {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.nav-block-title {
+  background: var(--ua-blue);
+  color: var(--ua-yellow);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 8px 0;
+}
+
+.nav-list li a {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 7px 16px;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.4;
+  transition: background 0.15s;
+}
+
+.nav-list li a:hover { background: #EEE8DC; color: var(--ua-blue); }
+.nav-list li a .nav-num { color: var(--olive-light); font-weight: 700; flex-shrink: 0; font-size: 0.75rem; margin-top: 1px; }
+.nav-list li a.active { background: #DDD5C5; font-weight: 600; color: var(--ua-blue); }
+
+/* MAIN CONTENT */
+.content { min-width: 0; }
+
+/* SECTION */
+.topic-section {
+  margin-bottom: 52px;
+  scroll-margin-top: 20px;
+}
+
+.topic-section:last-child { margin-bottom: 0; }
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--divider);
+}
+
+.section-num {
+  background: var(--ua-blue);
+  color: var(--ua-yellow);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 3px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--ua-blue);
+  line-height: 1.25;
+}
+
+.section-header p {
+  font-size: 0.84rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* TEXT CONTENT */
+.prose p { margin-bottom: 14px; }
+.prose p:last-child { margin-bottom: 0; }
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--olive);
+  margin: 24px 0 10px;
+}
+
+.prose h4 {
+  font-weight: 700;
+  color: var(--ua-blue);
+  margin: 18px 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.82rem;
+}
+
+/* CALLOUT BOXES */
+.callout {
+  border-left: 4px solid;
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin: 20px 0;
+}
+
+.callout-info { background: var(--info-bg); border-color: var(--info-border); }
+.callout-warn { background: var(--warn-bg); border-color: var(--warn-border); }
+.callout-pract { background: var(--pract-bg); border-color: var(--pract-border); }
+.callout-tip { background: var(--tip-bg); border-color: var(--tip-border); }
+
+.callout-title {
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.callout-info .callout-title { color: var(--info-border); }
+.callout-warn .callout-title { color: #B8860B; }
+.callout-pract .callout-title { color: var(--accent-green); }
+.callout-tip .callout-title { color: #6A0080; }
+
+.callout p { font-size: 0.9rem; line-height: 1.6; }
+.callout p + p { margin-top: 8px; }
+.callout ul { padding-left: 18px; font-size: 0.9rem; line-height: 1.7; }
+.callout ul li { margin-bottom: 4px; }
+
+/* TABLES */
+.table-wrap {
+  overflow-x: auto;
+  margin: 20px 0;
+  border-radius: 6px;
+  border: 1px solid var(--divider);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+  background: var(--white);
+}
+
+.data-table th {
+  background: var(--ua-blue);
+  color: var(--white);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.data-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--divider);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: #F7F3EC; }
+.data-table tr:hover td { background: #EDE8DC; }
+
+.data-table td.type-cell { text-align: center; font-size: 1.05rem; white-space: nowrap; width: 1%; }
+.data-table td.title-cell a { color: var(--ua-blue); font-weight: 600; text-decoration: none; }
+.data-table td.title-cell a:hover { text-decoration: underline; }
+.data-table td.title-cell .src-domain { display: block; font-size: 0.74rem; color: #888; margin-top: 2px; font-weight: 400; }
+.data-table td.desc-cell { font-size: 0.86rem; color: #333; }
+
+tr.priority-row td { background: #FFFDE7 !important; }
+tr.priority-row:hover td { background: #FFF9C4 !important; }
+
+/* LEGEND */
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.legend-item {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ACTIVITY BOX reused as note box */
+.activity-box {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 20px 0;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.activity-icon { font-size: 1.6rem; }
+
+.activity-header h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ua-blue);
+  line-height: 1.3;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.activity-box .activity-content {
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.activity-box .activity-content p { margin-bottom: 10px; }
+.activity-box .activity-content p:last-child { margin-bottom: 0; }
+
+/* BREADCRUMB */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a { color: var(--ua-blue); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #CCC; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; }
+
+/* FOOTER NAV */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 2px solid var(--divider);
+  flex-wrap: wrap;
+}
+
+.page-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ua-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 16px;
+  border: 1px solid var(--divider);
+  border-radius: 5px;
+  background: var(--card-bg);
+  transition: box-shadow 0.15s;
+}
+
+.page-nav a:hover { box-shadow: var(--shadow); }
+
+/* PRINT */
+@media print {
+  .topbar, .sidebar, .page-nav { display: none; }
+  .page-layout { grid-template-columns: 1fr; }
+  body { background: white; font-size: 12pt; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .module-header { padding: 36px 16px 30px; }
+  .page-layout { padding: 24px 16px 60px; }
+  .topbar { padding: 6px 16px; font-size: 0.72rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="topbar-stripe"></div>
+<div class="topbar">
+  <span>Захист України · Методичний довідник викладача</span>
+  <a href="../index.html">← На головну довідника</a>
+</div>
+
+<header class="module-header">
+  <div class="module-header-inner">
+    <div class="module-eyebrow">Додаток В</div>
+    <h1>Каталог відкритих джерел і матеріалів за модулями курсу</h1>
+    <div class="module-header-meta">
+      <div class="meta-pill">📚 <span>10 та 11 клас</span></div>
+      <div class="meta-pill">🗂️ <span>12 розділів за модулями</span></div>
+      <div class="meta-pill">📅 <span>Матеріали 2014–2026</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <aside class="sidebar">
+    <div class="nav-block">
+      <div class="nav-block-title">10 клас</div>
+      <ul class="nav-list">
+        <li><a href="#m10-1"><span class="nav-num">1</span> Громадянин і держава</a></li>
+        <li><a href="#m10-2"><span class="nav-num">2</span> Сили оборони, структура ЗСУ</a></li>
+        <li><a href="#m10-3"><span class="nav-num">3</span> Зброя, вогнева підготовка</a></li>
+        <li><a href="#m10-4"><span class="nav-num">4</span> Тактика, маскування, зв'язок</a></li>
+        <li><a href="#m10-5"><span class="nav-num">5</span> Топографія, фортифікація</a></li>
+        <li><a href="#m10-6"><span class="nav-num">6</span> Домедична допомога (TCCC)</a></li>
+      </ul>
+    </div>
+    <div class="nav-block">
+      <div class="nav-block-title">11 клас</div>
+      <ul class="nav-list">
+        <li><a href="#m11-1"><span class="nav-num">1</span> БпЛА та РЕБ</a></li>
+        <li><a href="#m11-2"><span class="nav-num">2</span> Стрілецька підготовка поглиблено</a></li>
+        <li><a href="#m11-3"><span class="nav-num">3</span> Інформаційна війна, OSINT</a></li>
+        <li><a href="#m11-4"><span class="nav-num">4</span> TCCC поглиблено (ч.1–2)</a></li>
+        <li><a href="#m11-5"><span class="nav-num">5</span> Цивільні в кризах, виживання</a></li>
+        <li><a href="#m11-6"><span class="nav-num">6</span> Профорієнтація</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <div class="breadcrumb">
+      <a href="../index.html">Довідник</a>
+      <span class="sep">/</span>
+      <span class="current">Додаток В. Каталог відкритих джерел</span>
+    </div>
+
+    <div class="activity-box">
+      <div class="activity-header">
+        <div class="activity-icon">ℹ️</div>
+        <div>
+          <h4>Як читати цей додаток</h4>
+        </div>
+      </div>
+      <div class="activity-content">
+        <p>Нижче — добірка додаткових матеріалів у вільному доступі для кожного з 13 модулів курсу: офіційні документи й настанови, статті, книги/посібники, презентації, тренінги та інфографіка, відео. Матеріали з «На Урок» і «Всеосвіта» свідомо не включені. Хронологія джерел — 2014–2026 роки. Це доповнення до довідника, а не заміна основного змісту модулів: посилання варто перевіряти на актуальність перед використанням на уроці, оскільки деякі офіційні сторінки оновлюються.</p>
+        <p>Презентації позначені 🎯 і жовтим фоном рядка — це PDF або вебсторінки, які відкриваються онлайн без потреби завантажувати файл. Справжніх презентацій поза Всеосвітою на цю тематику у вільному доступі знайшлося дуже мало — переважно матеріал представлений офіційними документами, посібниками й статтями.</p>
+        <p>Додано тренінги 🎓 — посилання на офіційний курс «Захист України» (10–11 клас) на платформі Всеукраїнської школи онлайн (lms.e-school.net.ua), де структура тренінгів відповідає темам модулів і відкривається без реєстрації.</p>
+      </div>
+    </div>
+
+    <div class="legend-grid">
+      <div class="legend-item">🎥 Відео</div>
+      <div class="legend-item">📚 Книга / посібник</div>
+      <div class="legend-item">📰 Стаття</div>
+      <div class="legend-item">🎯 Презентація (пріоритет)</div>
+      <div class="legend-item">🖼️ Інфографіка</div>
+      <div class="legend-item">🎓 Тренінг / курс</div>
+      <div class="legend-item">🔗 Ресурс / офіційна сторінка</div>
+    </div>
+
+    <!-- ===================== 10 КЛАС, МОДУЛЬ 1 ===================== -->
+    <section class="topic-section" id="m10-1">
+      <div class="section-header">
+        <div class="section-num">10.1</div>
+        <div>
+          <h2>Громадянин і держава у захисті країни</h2>
+          <p>Нацспротив, сектор безпеки і оборони, МГП, НАТО, волонтерство, ветерани</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://zakon.rada.gov.ua/laws/show/254к/96-вр" target="_blank" rel="noopener">Конституція України</a><span class="src-domain">zakon.rada.gov.ua</span></td>
+                <td class="desc-cell">Основний Закон держави — чинна редакція з усіма змінами; основа теми конституційного і військового обов'язку.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@d5230286d9e842c8a0e7eea83362832c" target="_blank" rel="noopener">Тренінг 1. Основи національної безпеки</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України» на платформі Всеукраїнської школи онлайн (МОН), відкривається без реєстрації.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://zakon.rada.gov.ua/go/1702-20" target="_blank" rel="noopener">Закон України «Про основи національного спротиву»</a><span class="src-domain">zakon.rada.gov.ua</span></td>
+                <td class="desc-cell">Чинний текст закону: територіальна оборона, рух опору, підготовка громадян до спротиву.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://uk.wikipedia.org/wiki/Національний_спротив_в_Україні" target="_blank" rel="noopener">Національний спротив в Україні</a><span class="src-domain">uk.wikipedia.org</span></td>
+                <td class="desc-cell">Огляд складових і мети нацспротиву, керівництва підготовкою громадян.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://blogs.icrc.org/ua/2021/05/203/ihl-comprehensive-intro/" target="_blank" rel="noopener">Підручник «Міжнародне гуманітарне право: загальний курс» Н. Мельцера</a><span class="src-domain">blogs.icrc.org (МКЧХ)</span></td>
+                <td class="desc-cell">Повний україномовний підручник з МГП від Міжнародного Комітету Червоного Хреста.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://files.znu.edu.ua/files/Bibliobooks/Inshi74/0055192.pdf" target="_blank" rel="noopener">«Міжнародне гуманітарне право» — навчально-методичний посібник (Грушко М. В.)</a><span class="src-domain">files.znu.edu.ua</span></td>
+                <td class="desc-cell">Посібник із системним викладом МГП, «право Женеви» і «право Гааги».</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://redcross.org.ua/wp-content/uploads/2022/07/МГП_Довідник-для-журналістів_2-ге-вид-стисуто.pdf" target="_blank" rel="noopener">«Міжнародне гуманітарне право». Довідник для журналістів</a><span class="src-domain">redcross.org.ua</span></td>
+                <td class="desc-cell">Стисле системне видання МГП з витягами з Женевських конвенцій 1949 р. і протоколів 1977 р.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://blogs.icrc.org/ua/2021/10/203/ihl-answers-questions-ukr/" target="_blank" rel="noopener">Брошура «МГП: відповідаємо на ваші запитання»</a><span class="src-domain">blogs.icrc.org (МКЧХ)</span></td>
+                <td class="desc-cell">Короткий і доступний вступ до МГП для тих, хто вперше з ним стикається.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🖼️</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/rozrobleno-ilyustrovanu-instrukciyu-dlya-vijskovix-sil-tro-z-dokumentuvannya-porushen-prav-lyudini-ta-norm-mizhnarodnogo-gumanitarnogo-prava" target="_blank" rel="noopener">Ілюстрована інструкція з документування порушень прав людини та норм МГП</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Наочна інструкція для військових ТрО — як фіксувати докази воєнних злочинів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/kodeks-povedinki-vijskovosluzhbovciv-zbrojnix-sil-ukraini" target="_blank" rel="noopener">Кодекс поведінки військовослужбовців ЗСУ</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Офіційний документ з нормами поведінки військових — практичне застосування МГП.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://www.nato.int/cps/uk/natohq/topics_37750.htm" target="_blank" rel="noopener">Відносини Україна — НАТО</a><span class="src-domain">nato.int</span></td>
+                <td class="desc-cell">Офіційна сторінка НАТО з історією та поточним станом партнерства з Україною.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://nuou.org.ua/nauka/npub/monography/monog-sbou.html" target="_blank" rel="noopener">«Сектор безпеки і оборони України: стратегічне керівництво та військове управління»</a><span class="src-domain">nuou.org.ua</span></td>
+                <td class="desc-cell">Монографія Національного університету оборони про стратегічне керівництво сектором безпеки.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 10 КЛАС, МОДУЛЬ 2 ===================== -->
+    <section class="topic-section" id="m10-2">
+      <div class="section-header">
+        <div class="section-num">10.2</div>
+        <div>
+          <h2>Сили оборони, структура ЗСУ</h2>
+          <p>Роди військ, нарукавні знаки, ієрархія формувань, звання</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://uk.wikipedia.org/wiki/Нарукавні_знаки_Збройних_сил_України" target="_blank" rel="noopener">Нарукавні знаки Збройних сил України</a><span class="src-domain">uk.wikipedia.org</span></td>
+                <td class="desc-cell">Історія появи й затвердження сучасних нарукавних знаків ЗСУ (з 2017 року).</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://uk.wikipedia.org/wiki/Емблеми_родів_військ_та_служб_ЗС_України" target="_blank" rel="noopener">Емблеми родів військ та служб ЗС України</a><span class="src-domain">uk.wikipedia.org</span></td>
+                <td class="desc-cell">Класифікація емблем родів військ і служб, що розміщуються на петлицях і погонах.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://partner.mod.gov.ua/useful-info/symbols-paper-specs" target="_blank" rel="noopener">Технічні специфікації символіки ЗСУ</a><span class="src-domain">partner.mod.gov.ua</span></td>
+                <td class="desc-cell">Офіційний перелік усіх відзнак, нарукавних знаків і нагород Міністерства оборони.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://chas.news/current/vse-pro-strukturu-zsu-rodi-viisk-nazvi-chastin-viiskovi-zvannya" target="_blank" rel="noopener">Все про структуру ЗСУ: роди військ, назви частин, військові звання</a><span class="src-domain">chas.news</span></td>
+                <td class="desc-cell">Доступне пояснення видів і родів військ, ієрархії від відділення до корпусу.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@30bd69ad9ccf496cbd135fac2f07199f" target="_blank" rel="noopener">Тренінг 2. Основи управління та планування</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України» на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+              <tr class="priority-row">
+                <td class="type-cell">🎯</td>
+                <td class="title-cell"><a href="https://armyinform.com.ua/2020/08/10/pro-zminu-znakiv-rozriznennya-na-polovij-formi-odyagu-vijskovosluzhbovcziv-zs-ukrayiny/" target="_blank" rel="noopener">Про зміну знаків розрізнення на польовій формі одягу</a><span class="src-domain">armyinform.com.ua</span></td>
+                <td class="desc-cell">Текстовий виклад офіційної презентації МО (зі слайдами №1–8) про розміщення нарукавних і нагрудних знаків.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 10 КЛАС, МОДУЛЬ 3 ===================== -->
+    <section class="topic-section" id="m10-3">
+      <div class="section-header">
+        <div class="section-num">10.3</div>
+        <div>
+          <h2>Зброя, вогнева підготовка</h2>
+          <p>Будова АК-74/AR-15, гранати, балістика, норматив стрільби</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://nuczu.edu.ua/images/topmenu/kafedry/kafedra-viiskovoi-pidhotovky/szvp/Kniga_4.pdf" target="_blank" rel="noopener">Настанова зі стрілецької справи: автомат і кулемет Калашникова</a><span class="src-domain">nuczu.edu.ua (МО України)</span></td>
+                <td class="desc-cell">Офіційний статутний документ: будова, розбирання, складання, робота частин і механізмів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://tck.pl.ua/wp-content/uploads/2021/02/Nastanova-hranaty.pdf" target="_blank" rel="noopener">Настанова зі стрілецької справи: ручні гранати</a><span class="src-domain">tck.pl.ua</span></td>
+                <td class="desc-cell">Офіційний розділ настанови про будову й застосування гранат РГД-5, Ф-1, РГН, РГО.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://uahistory.co/pidruchniki/fyka-defense-of-ukraine-10-class-2023-profile-level/75.php" target="_blank" rel="noopener">Підручник «Захист України», 10 клас, профільний рівень (Фука та ін.)</a><span class="src-domain">uahistory.co</span></td>
+                <td class="desc-cell">Параграф чинного підручника про призначення, будову й тактико-технічні характеристики гранат.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://nvkarta.com/project/library/tactics" target="_blank" rel="noopener">Бібліотека «Військовим»: розділ Тактика</a><span class="src-domain">nvkarta.com</span></td>
+                <td class="desc-cell">Каталог вільних військових посібників, зокрема щодо стрілецької та вогневої підготовки.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://warbooks.com.ua/contents/vogneva-pidgotovka-navchalniy.pdf" target="_blank" rel="noopener">«Вогнева підготовка» — навчальний посібник</a><span class="src-domain">warbooks.com.ua</span></td>
+                <td class="desc-cell">Повний посібник з балістики, траєкторії кулі, тиску газів і техніки стрільби.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@58a6bb91b3804e01a607fe4eb2928989" target="_blank" rel="noopener">Тренінг 4. Озброєння та військова техніка. Стрілецька підготовка</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України» на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 10 КЛАС, МОДУЛЬ 4 ===================== -->
+    <section class="topic-section" id="m10-4">
+      <div class="section-header">
+        <div class="section-num">10.4</div>
+        <div>
+          <h2>Тактика, маскування, зв'язок</h2>
+          <p>Маневр, маскування, радіозв'язок, пересування, патрулювання</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://nvkarta.com/project/library/tactics" target="_blank" rel="noopener">«Тактика легкої піхоти для малих підрозділів» К. Е. Ларсена (україномовне видання)</a><span class="src-domain">nvkarta.com, розділ «Тактика»</span></td>
+                <td class="desc-cell">Класичний тактичний посібник за стандартами НАТО про камуфляж, маневр, сигнали, марш — у переліку бібліотеки.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/wp-content/uploads/2024/11/maskuvannia_viisk.pdf" target="_blank" rel="noopener">«Маскування військ» — навчальний посібник</a><span class="src-domain">sprotyvg7.com.ua (Військово-юридичний інститут МО)</span></td>
+                <td class="desc-cell">Засоби маскування і захисту від високоточної зброї для курсантів та офіцерів запасу.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://glavcom.ua/columns/yuriybutusov/chotiri-kljuchovi-printsipi-suchasnoji-vijni-chomu-stara-taktika-neefektivna-1044170.html" target="_blank" rel="noopener">Чотири ключові принципи сучасної війни</a><span class="src-domain">glavcom.ua</span></td>
+                <td class="desc-cell">Аналітична стаття Юрія Бутусова про прихований маневр і зміну тактики позиційної війни.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://nvkarta.com/project/library/tactics" target="_blank" rel="noopener">Бібліотека «Військовим»: розділ Тактика</a><span class="src-domain">nvkarta.com</span></td>
+                <td class="desc-cell">Каталог посібників з тактики дій малих груп, у т. ч. з протидії БпЛА.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://warbooks.com.ua/contents/posibnik-reyndzhera-ne-dlya-slabkikh-chi-legkodukhikh.pdf" target="_blank" rel="noopener">«Посібник рейнджера. Не для слабких чи легкодухих»</a><span class="src-domain">warbooks.com.ua</span></td>
+                <td class="desc-cell">Український переклад підручника рейнджерів Армії США: тактика, маневр, лідерство підрозділу.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://nuczu.edu.ua/images/topmenu/kafedry/kafedra-viiskovoi-pidhotovky/distant-content/Taktika_1.pdf" target="_blank" rel="noopener">«Загальна тактика» — навчальний посібник</a><span class="src-domain">nuczu.edu.ua</span></td>
+                <td class="desc-cell">Основи загальновійськового бою, організація бойової підготовки і мобілізаційна готовність підрозділів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@25fb1ebcd39244e4b9eb3cd5c6ae4946" target="_blank" rel="noopener">Тренінг 6. Основи дій, комунікації та взаємодії в бою</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України» на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 10 КЛАС, МОДУЛЬ 5 ===================== -->
+    <section class="topic-section" id="m10-5">
+      <div class="section-header">
+        <div class="section-num">10.5</div>
+        <div>
+          <h2>Топографія, фортифікація</h2>
+          <p>Азимут, компас, карта, координати, інженерні загородження</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://nuczu.edu.ua/images/topmenu/kafedry/kafedra-viiskovoi-pidhotovky/distant-content/Topografiy.pdf" target="_blank" rel="noopener">Військова топографія — навчальний матеріал</a><span class="src-domain">nuczu.edu.ua (МО України)</span></td>
+                <td class="desc-cell">Офіційний матеріал з визначення азимута, орієнтування компасом і за Сонцем.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://tck.pl.ua/wp-content/uploads/2021/02/Topohrafichna-pidhotovka-metodychnyy-material.pdf" target="_blank" rel="noopener">Топографічна підготовка — методичний матеріал</a><span class="src-domain">tck.pl.ua</span></td>
+                <td class="desc-cell">Способи орієнтування на місцевості без карти й за картою, визначення азимутів і дирекційних кутів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://nvkarta.com/project/library/topography" target="_blank" rel="noopener">Бібліотека «Військовим»: розділ Топографія</a><span class="src-domain">nvkarta.com</span></td>
+                <td class="desc-cell">Відеоуроки й статті про компаси, азимут, дирекційний кут, читання карти, визначення відстаней.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://library.udpu.edu.ua/library_files/425131.pdf" target="_blank" rel="noopener">«Топографія з основами картографії» — навчальний посібник</a><span class="src-domain">library.udpu.edu.ua</span></td>
+                <td class="desc-cell">Аналіз і читання топографічної карти, визначення координат, відстаней, азимутів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/metodichnij-posibnik-priznachenij-dlya-vikoristannya-topografichnix-kart-nato-v-zbrojnix-silax-ukraini" target="_blank" rel="noopener">Рекомендації з використання топографічних карт НАТО в ЗСУ</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Методичний посібник про умовні знаки й формат карт стандарту НАТО.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/vikoristannya-aeroznimkiv-u-vijskax" target="_blank" rel="noopener">Використання аерознімків у військах</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Чим аерознімок відрізняється від карти і як його використовують для цілевказання та розвідки місцевості.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎥</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/topografiya-1-viznachennya-osoblivostej-miscevosti-za-dopomogoyu-karti" target="_blank" rel="noopener">Топографія — 1. Визначення особливостей місцевості за допомогою карти</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Перша частина відеосерії про роботу з топографічною картою.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@0f7abe11841542ff97596d41332360ae" target="_blank" rel="noopener">Тренінг 8. Орієнтування на місцевості та інженерна фортифікація</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України» на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 10 КЛАС, МОДУЛЬ 6 ===================== -->
+    <section class="topic-section" id="m10-6">
+      <div class="section-header">
+        <div class="section-num">10.6</div>
+        <div>
+          <h2>Домедична допомога в умовах бою (TCCC)</h2>
+          <p>MARCH, IFAK, турнікет, тампонування, пневмоторакс</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://tccc.org.ua/en" target="_blank" rel="noopener">tccc.org.ua — український переклад настанов TCCC</a><span class="src-domain">tccc.org.ua</span></td>
+                <td class="desc-cell">Повний офіційний переклад настанов TCCC українською: статті, навчальні модулі, відео.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://tccc.org.ua/files/downloads/clinical-guidelines-2024-en-ua.pdf" target="_blank" rel="noopener">Клінічні настанови TCCC 2024 (українською)</a><span class="src-domain">tccc.org.ua</span></td>
+                <td class="desc-cell">Чинний повний протокол допомоги пораненим на полі бою з усіма етапами MARCH.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/rekomendacii-z-taktichnoi-dopomogi-poranenim-v-umovax-bojovix-dij-dlya-medichnogo-personalu" target="_blank" rel="noopener">Рекомендації з тактичної допомоги пораненим для медичного персоналу</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Повний документ з рекомендаціями для медиків в умовах бойових дій.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎥</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/navchalnij-kurs-iz-taktichnoi-medicini-centr-a-sbu" target="_blank" rel="noopener">Навчальний курс із тактичної медицини Центру СБУ «А»</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Серія відеолекцій з тактичної медицини для тих, хто ще не пройшов відповідні курси.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/wp-content/uploads/2023/03/tccc-guidelines-2021-ukr.pdf" target="_blank" rel="noopener">Настанови ТССС 2021 українською</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Попередня версія настанов TCCC з виділеними змінами — корисна для порівняння редакцій.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@7e538bcccf754706a4af1125600a4916" target="_blank" rel="noopener">Тренінг 9. Домедична допомога в умовах бою</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України» на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 11 КЛАС, МОДУЛЬ 1 ===================== -->
+    <section class="topic-section" id="m11-1">
+      <div class="section-header">
+        <div class="section-num">11.1</div>
+        <div>
+          <h2>БпЛА та РЕБ</h2>
+          <p>Типи дронів, українські розробки, симулятори, радіоелектронна боротьба</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/wp-content/uploads/2023/03/Теорія_і_практика_застосування_БПЛА__ua_dynamics_brochure_.pdf" target="_blank" rel="noopener">«Теорія і практика застосування безпілотних літальних апаратів (дронів)»</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Навчальна брошура про типи БпЛА, принципи застосування й тактику використання.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://uk.wikipedia.org/wiki/Сили_безпілотних_систем_Збройних_сил_України" target="_blank" rel="noopener">Сили безпілотних систем Збройних сил України</a><span class="src-domain">uk.wikipedia.org</span></td>
+                <td class="desc-cell">Історія створення окремого роду військ СБС, структура, керівництво.</td>
+              </tr>
+              <tr class="priority-row">
+                <td class="type-cell">🎯</td>
+                <td class="title-cell"><a href="https://t.me/s/usf_army" target="_blank" rel="noopener">Офіційний Telegram Сил безпілотних систем ЗСУ</a><span class="src-domain">t.me/usf_army</span></td>
+                <td class="desc-cell">Щоденна аналітика у форматі слайдів-каруселей про застосування дронів і статистику ударів — готовий матеріал для презентації на уроці.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://armyinform.com.ua/2025/07/30/bezpilotni-nashhadky-nautilusa-ekspert-rozpoviv-pro-sogodennya-i-perspektyvy-bojovyh-pidvodnyh-droniv/" target="_blank" rel="noopener">Безпілотні нащадки «Наутілуса»: сьогодення підводних дронів</a><span class="src-domain">armyinform.com.ua</span></td>
+                <td class="desc-cell">Огляд напряму морських безпілотних систем — доповнює тему класифікації БпЛА.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@abfc6a3be4b14be08f8927606871f089" target="_blank" rel="noopener">Тренінг 1. Військові технології та їхній розвиток</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України», 11 клас, на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 11 КЛАС, МОДУЛЬ 2 ===================== -->
+    <section class="topic-section" id="m11-2">
+      <div class="section-header">
+        <div class="section-num">11.2</div>
+        <div>
+          <h2>Стрілецька підготовка поглиблено</h2>
+          <p>Положення для стрільби, ACE/SALUTE/3D, пересування двійками, інженерні перешкоди</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://tck.pl.ua/wp-content/uploads/2021/02/Taktychna-pidhotovka-soldata-viddilennia-vzvodu.pdf" target="_blank" rel="noopener">«Тактична підготовка солдата, механізованого відділення і взводу»</a><span class="src-domain">tck.pl.ua</span></td>
+                <td class="desc-cell">Навчально-методичний посібник з основ тактичної підготовки на рівні відділення.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://viknu.mil.gov.ua/files/books/Інженерна%20підтримка.pdf" target="_blank" rel="noopener">«Інженерна підтримка дій військ»</a><span class="src-domain">viknu.mil.gov.ua (Військовий інститут КНУ)</span></td>
+                <td class="desc-cell">Подолання інженерних загороджень, перешкод і обмеження мобільності противника.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://nvkarta.com/project/library/uploads/military/tactics/[tactics]_vohneva_pidhotovka_posibnyk.pdf" target="_blank" rel="noopener">«Вогнева підготовка» — навчальний посібник</a><span class="src-domain">nvkarta.com</span></td>
+                <td class="desc-cell">Основи балістики та техніки стрільби з різних положень.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://shron1.chtyvo.org.ua/Trofymenko_Pavlo/Taktychna_pidhotovka_artyleriiskykh_pidrozdiliv.pdf" target="_blank" rel="noopener">«Тактична підготовка артилерійських підрозділів»</a><span class="src-domain">chtyvo.org.ua</span></td>
+                <td class="desc-cell">Посібник П. Трофименка про тактику дій підрозділів — доповнює тему координації груп у бою.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@4e77370b091149b7b18033a97bd688d8" target="_blank" rel="noopener">Тренінг 4. Стрілецька підготовка, основи дій та взаємодії в бою</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України», 11 клас, на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 11 КЛАС, МОДУЛЬ 3 ===================== -->
+    <section class="topic-section" id="m11-3">
+      <div class="section-header">
+        <div class="section-num">11.3</div>
+        <div>
+          <h2>Інформаційна війна, OSINT</h2>
+          <p>Пропаганда, OSINT/GEOINT/FININT, кібербезпека</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://komit.rada.gov.ua/news/main_news/75596.html" target="_blank" rel="noopener">Безкоштовний серіал «Школа OSINT» (Дія.Освіта)</a><span class="src-domain">komit.rada.gov.ua</span></td>
+                <td class="desc-cell">5 епізодів про практичні методи розвідки з відкритих джерел.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://prometheus.org.ua/prometheus-free/osint-open-source-intelligence/" target="_blank" rel="noopener">Безкоштовний курс OSINT</a><span class="src-domain">prometheus.org.ua</span></td>
+                <td class="desc-cell">Онлайн-курс про розвідку з відкритих джерел на освітній платформі Prometheus.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/lesson/yak-ne-stati-kiber-zhertvoyu" target="_blank" rel="noopener">Як не стати кібер-жертвою</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Пам'ятка з персональної кібербезпеки від фахівців з етичного зламу систем.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://razumkov.org.ua/uploads/journal/ukr/NSD167-168_2016_ukr.pdf" target="_blank" rel="noopener">«Гібридна війна Росії — виклик і загроза для Європи»</a><span class="src-domain">razumkov.org.ua</span></td>
+                <td class="desc-cell">Аналітичний звіт Центру Разумкова про стратегії й засоби гібридної агресії.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://explainer.ua/shho-take-osint-i-yak-vin-dopomig-vikriti-vbivstva-u-buchi/" target="_blank" rel="noopener">Що таке OSINT і як він допоміг викрити вбивства у Бучі</a><span class="src-domain">explainer.ua</span></td>
+                <td class="desc-cell">Стаття-кейс про практичне застосування OSINT для документування воєнних злочинів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://files.znu.edu.ua/files/Bibliobooks/Inshi72/0052980.pdf" target="_blank" rel="noopener">«Гібридна війна і журналістика. Проблеми інформаційної безпеки»</a><span class="src-domain">files.znu.edu.ua</span></td>
+                <td class="desc-cell">Навчальний посібник про інформаційно-психологічний і технологічний вимір гібридних протистоянь.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@3c34eaa60fa2403791a5f3acf1557ce8" target="_blank" rel="noopener">Тренінг 7. Інформаційна війна</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України», 11 клас, на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 11 КЛАС, МОДУЛЬ 4 ===================== -->
+    <section class="topic-section" id="m11-4">
+      <div class="section-header">
+        <div class="section-num">11.4</div>
+        <div>
+          <h2>TCCC поглиблено (частини 1–2)</h2>
+          <p>Турнікети, тампонування, бандажування, пневмоторакс, підсумкові сценарії MARCH</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://tccc.org.ua/en" target="_blank" rel="noopener">tccc.org.ua — український переклад настанов TCCC</a><span class="src-domain">tccc.org.ua</span></td>
+                <td class="desc-cell">Той самий повний офіційний переклад настанов — основне джерело для поглибленого модуля.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://tccc.org.ua/files/downloads/clinical-guidelines-2024-en-ua.pdf" target="_blank" rel="noopener">Клінічні настанови TCCC 2024 (українською)</a><span class="src-domain">tccc.org.ua</span></td>
+                <td class="desc-cell">Деталізовані протоколи турнікетів, тампонування й пневмотораксу для поглибленого вивчення.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://sprotyvg7.com.ua/wp-content/uploads/2023/03/tccc-guidelines-2021-ukr.pdf" target="_blank" rel="noopener">Настанови ТССС 2021 українською</a><span class="src-domain">sprotyvg7.com.ua</span></td>
+                <td class="desc-cell">Альтернативна версія перекладу настанов — корисна для порівняння формулювань.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@a45fc4a70fa9474393ad8b3b50897e1b" target="_blank" rel="noopener">Тренінг 5. Домедична допомога в умовах бою</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України», 11 клас, на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 11 КЛАС, МОДУЛЬ 5 ===================== -->
+    <section class="topic-section" id="m11-5">
+      <div class="section-header">
+        <div class="section-num">11.5</div>
+        <div>
+          <h2>Цивільне населення в кризах, виживання</h2>
+          <p>Евакуація, тривожний рюкзак, надзвичайні ситуації, базові навички виживання</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://dsns.gov.ua/uk/navchannya-naselennya-diyam-u-nadzvichaynih-sitaciyah" target="_blank" rel="noopener">Посібник «Захист і самопоміч у надзвичайних ситуаціях»</a><span class="src-domain">dsns.gov.ua</span></td>
+                <td class="desc-cell">Офіційний посібник ДСНС для непрацюючого населення з алгоритмами дій у НС.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://dnpb.gov.ua/my/2-ER-civil%20defense-2024.pdf" target="_blank" rel="noopener">«Цифрові засоби цивільного захисту в умовах воєнного стану»</a><span class="src-domain">dnpb.gov.ua</span></td>
+                <td class="desc-cell">Практичний посібник про захисні споруди, оповіщення і правила виживання в НС.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://uk.wikipedia.org/wiki/Державна_служба_України_з_надзвичайних_ситуацій" target="_blank" rel="noopener">Державна служба України з надзвичайних ситуацій</a><span class="src-domain">uk.wikipedia.org</span></td>
+                <td class="desc-cell">Структура й функції ДСНС, історія створення служби.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📚</td>
+                <td class="title-cell"><a href="https://nung.edu.ua/sites/default/files/2020-11/navchalnyy_posibnyk_po_cz_2017.pdf" target="_blank" rel="noopener">«Цивільний захист» — навчальний посібник</a><span class="src-domain">nung.edu.ua</span></td>
+                <td class="desc-cell">Дії у надзвичайних ситуаціях мирного й воєнного часу, організація цивільного захисту.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@1080083d153c4bf1a51e3db694e75ae7" target="_blank" rel="noopener">Тренінг 8. Цивільне населення в кризових умовах</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України», 11 клас, на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== 11 КЛАС, МОДУЛЬ 6 ===================== -->
+    <section class="topic-section" id="m11-6">
+      <div class="section-header">
+        <div class="section-num">11.6</div>
+        <div>
+          <h2>Профорієнтація</h2>
+          <p>Вступ до ВВНЗ, військові спеціальності, ветеранський бізнес</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Тип</th><th>Назва</th><th>Короткий опис</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="type-cell">🔗</td>
+                <td class="title-cell"><a href="https://mod.gov.ua/vstupiti-do-vijskovogo-navchalnogo-zakladu" target="_blank" rel="noopener">Довідник вступника до ВВНЗ</a><span class="src-domain">mod.gov.ua</span></td>
+                <td class="desc-cell">Офіційний перелік військових навчальних закладів, спеціальностей і умов вступу.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://mod.gov.ua/explanation/yak-staty-kursantom-viiskovoho-vyshu-alhorytm-vstupu-v-2026-rotsi" target="_blank" rel="noopener">Як стати курсантом військового вишу: алгоритм вступу</a><span class="src-domain">mod.gov.ua</span></td>
+                <td class="desc-cell">Покроковий гайд Міністерства оборони щодо вступної кампанії до ВВНЗ.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://mod.gov.ua/explanation/na-kogo-navchayut-u-vijskovih-vishah-povnij-gajd-speczialnostej-2026-roku" target="_blank" rel="noopener">Які військові спеціальності доступні абітурієнтам ВВНЗ</a><span class="src-domain">mod.gov.ua</span></td>
+                <td class="desc-cell">Повний гайд спеціальностей з контактами приймальних комісій.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">📰</td>
+                <td class="title-cell"><a href="https://www.radiosvoboda.org/a/svoyi-sered-svoyikh-veteranskyy-biznes-istoriyi-pidpryyemtsiv/32609490.html" target="_blank" rel="noopener">«Свої серед своїх»: історії ветеранського бізнесу</a><span class="src-domain">radiosvoboda.org</span></td>
+                <td class="desc-cell">Подкаст-стаття Радіо Свобода про підприємців-ветеранів — для теми адаптації ветеранів.</td>
+              </tr>
+              <tr>
+                <td class="type-cell">🎓</td>
+                <td class="title-cell"><a href="https://lms.e-school.net.ua/courses/course-v1:UIED+UIED_06+2025/jump_to/block-v1:UIED+UIED_06+2025+type@vertical+block@d85eefcd1d0f475fa3c8849564ccb0e5" target="_blank" rel="noopener">Тренінг 9. Планую майбутнє: особиста роль в обороні України</a><span class="src-domain">lms.e-school.net.ua, ВШО</span></td>
+                <td class="desc-cell">Офіційний тренінг курсу «Захист України», 11 клас, на платформі ВШО (МОН), відкривається без реєстрації.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-nav">
+      <a href="../index.html">← На головну довідника</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
