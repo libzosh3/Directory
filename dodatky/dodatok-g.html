@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Додаток Г. Таблиці — Захист України 10–11 клас</title>
+<style>
+:root {
+  --ua-blue: #003087;
+  --ua-yellow: #FFD700;
+  --olive: #4A5240;
+  --olive-light: #6B7A5A;
+  --sand: #F5F0E8;
+  --ink: #1C1C1C;
+  --white: #FFFFFF;
+  --divider: #C8C0B0;
+  --accent-red: #C0392B;
+  --accent-green: #2E7D32;
+  --card-bg: #FDFBF7;
+  --info-bg: #E8F0FE;
+  --info-border: #4A90D9;
+  --warn-bg: #FFF8E1;
+  --warn-border: #F9A825;
+  --pract-bg: #E8F5E9;
+  --pract-border: #2E7D32;
+  --tip-bg: #F3E5F5;
+  --tip-border: #7B1FA2;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Segoe UI', 'Arial', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--sand);
+  color: var(--ink);
+  line-height: 1.7;
+  font-size: 15.5px;
+}
+
+/* TOP BAR */
+.topbar {
+  background: var(--ua-blue);
+  color: rgba(255,255,255,0.75);
+  font-size: 0.78rem;
+  padding: 8px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar a { color: var(--ua-yellow); text-decoration: none; }
+.topbar a:hover { text-decoration: underline; }
+
+.topbar-stripe { height: 4px; background: var(--ua-yellow); }
+
+/* HEADER */
+.module-header {
+  background: linear-gradient(135deg, var(--ua-blue) 0%, #001a52 70%, var(--olive) 100%);
+  color: var(--white);
+  padding: 48px 32px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.module-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--ua-yellow);
+}
+
+.module-header-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.module-eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ua-yellow);
+  margin-bottom: 12px;
+}
+
+.module-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  max-width: 780px;
+}
+
+.module-header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.meta-pill {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-pill span { opacity: 0.7; }
+
+/* LAYOUT */
+.page-layout {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: sticky;
+  top: 16px;
+}
+
+.nav-block {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.nav-block-title {
+  background: var(--ua-blue);
+  color: var(--ua-yellow);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 10px 16px;
+}
+
+.alpha-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  padding: 10px;
+}
+
+.alpha-grid a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+
+.alpha-grid a:hover { background: #EEE8DC; color: var(--ua-blue); }
+
+/* MAIN CONTENT */
+.content { min-width: 0; }
+
+/* SECTION (letter group) */
+.topic-section {
+  margin-bottom: 40px;
+  scroll-margin-top: 20px;
+}
+
+.topic-section:last-child { margin-bottom: 0; }
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--divider);
+}
+
+.section-num {
+  background: var(--ua-blue);
+  color: var(--ua-yellow);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 4px 14px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ua-blue);
+  line-height: 1.25;
+}
+
+/* GLOSSARY CARDS */
+.glossary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.glossary-card {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-left: 3px solid var(--olive-light);
+  border-radius: 6px;
+  padding: 13px 18px;
+}
+
+.glossary-card dt {
+  font-weight: 700;
+  color: var(--ua-blue);
+  font-size: 0.96rem;
+  margin-bottom: 4px;
+}
+
+.glossary-card dd {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #333;
+}
+
+.glossary-card .lec-refs {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.72rem;
+  color: #999;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a { color: var(--ua-blue); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb .sep { color: #CCC; }
+.breadcrumb .current { color: var(--ink); font-weight: 600; }
+
+/* ACTIVITY BOX (note box) */
+.activity-box {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  padding: 24px;
+  margin: 0 0 28px;
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--divider);
+}
+
+.activity-icon { font-size: 1.6rem; }
+
+.activity-header h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ua-blue);
+  line-height: 1.3;
+}
+
+.activity-box .activity-content {
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.activity-box .activity-content p { margin-bottom: 10px; }
+.activity-box .activity-content p:last-child { margin-bottom: 0; }
+
+.legend-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin: 0 0 28px;
+}
+
+.legend-item {
+  background: var(--white);
+  border: 1px solid var(--divider);
+  border-radius: 5px;
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* FOOTER NAV */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 2px solid var(--divider);
+  flex-wrap: wrap;
+}
+
+.page-nav a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ua-blue);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 10px 16px;
+  border: 1px solid var(--divider);
+  border-radius: 5px;
+  background: var(--card-bg);
+  transition: box-shadow 0.15s;
+}
+
+.page-nav a:hover { box-shadow: var(--shadow); }
+
+/* PRINT */
+@media print {
+  .topbar, .sidebar, .page-nav { display: none; }
+  .page-layout { grid-template-columns: 1fr; }
+  body { background: white; font-size: 12pt; }
+}
+
+/* RESPONSIVE */
+@media (max-width: 860px) {
+  .page-layout { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .alpha-grid { grid-template-columns: repeat(8, 1fr); }
+  .module-header { padding: 36px 16px 30px; }
+  .page-layout { padding: 24px 16px 60px; }
+  .topbar { padding: 6px 16px; font-size: 0.72rem; }
+}
+/* DODATOK A SPECIFIC */
+.table-wrap {
+  overflow-x: auto;
+  margin: 16px 0 24px;
+  border-radius: 6px;
+  border: 1px solid var(--divider);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.87rem;
+  background: var(--white);
+}
+
+.data-table th {
+  background: var(--ua-blue);
+  color: var(--white);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+}
+
+.data-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--divider);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tr:nth-child(even) td { background: #F7F3EC; }
+.data-table tr:hover td { background: #EDE8DC; }
+.data-table td.num-cell { text-align: center; font-weight: 600; white-space: nowrap; }
+
+.norm-block-title {
+  font-weight: 700;
+  color: var(--olive);
+  font-size: 0.95rem;
+  margin: 22px 0 8px;
+  padding-left: 2px;
+  border-left: 3px solid var(--olive-light);
+  padding-left: 10px;
+}
+
+.source-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: #999;
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+/* DODATOK G SPECIFIC - rank cards */
+.rank-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 0 0 24px;
+}
+
+.rank-card {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-left: 3px solid var(--ua-blue);
+  border-radius: 6px;
+  padding: 11px 14px;
+}
+
+.rank-group {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--olive-light);
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.rank-name {
+  font-weight: 700;
+  color: var(--ua-blue);
+  font-size: 0.92rem;
+  margin-bottom: 3px;
+}
+
+.rank-sub {
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+/* phonetic alphabet grid */
+.phon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin: 0 0 20px;
+}
+
+.phon-card {
+  background: var(--card-bg);
+  border: 1px solid var(--divider);
+  border-radius: 5px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phon-letter {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ua-blue);
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.phon-word { font-size: 0.88rem; color: var(--ink); }
+
+</style>
+</head>
+<body>
+
+<div class="topbar-stripe"></div>
+<div class="topbar">
+  <span>Захист України · Методичний довідник викладача</span>
+  <a href="../index.html">← На головну довідника</a>
+</div>
+
+<header class="module-header">
+  <div class="module-header-inner">
+    <div class="module-eyebrow">Додаток Г</div>
+    <h1>Звання, умовні знаки карти, алфавіт NATO</h1>
+    <div class="module-header-meta">
+      <div class="meta-pill">🎖️ <span>22 звання</span></div>
+      <div class="meta-pill">🗺️ <span>18 тактичних знаків</span></div>
+      <div class="meta-pill">🔤 <span>26 літер алфавіту</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="page-layout">
+
+  <aside class="sidebar">
+    <div class="nav-block">
+      <div class="nav-block-title">Розділи додатку</div>
+      <ul class="nav-list">
+        <li><a href="#g-zvannya"><span class="nav-num">Г.1</span> Військові звання</a></li>
+        <li><a href="#g-znaky"><span class="nav-num">Г.2</span> Тактичні умовні знаки</a></li>
+        <li><a href="#g-alphabet"><span class="nav-num">Г.3</span> Алфавіт NATO</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+
+    <div class="breadcrumb">
+      <a href="../index.html">Довідник</a>
+      <span class="sep">/</span>
+      <span class="current">Додаток Г. Таблиці</span>
+    </div>
+
+    <div class="activity-box">
+      <div class="activity-header">
+        <div class="activity-icon">ℹ️</div>
+        <div>
+          <h4>Як читати цей додаток</h4>
+        </div>
+      </div>
+      <div class="activity-content">
+        <p>Три довідкові таблиці, потрібні практично на кожному уроці курсу: ієрархія військових звань ЗСУ з логікою погонів, базові тактичні умовні знаки NATO для читання карт, і фонетичний алфавіт для радіозв'язку.</p>
+        <p>Усі дані взято безпосередньо з тем модулів 2 і 4 (10 клас) — це довідкова, а не нова інформація, зведена в одному місці для швидкого пошуку під час уроку.</p>
+      </div>
+    </div>
+
+    <section class="topic-section" id="g-zvannya">
+      <div class="section-header">
+        <div class="section-num">Г.1</div>
+        <div>
+          <h2>Військові звання та знаки розрізнення ЗСУ</h2>
+          <p>10 клас, модуль 2 · Система діє з 2020 р.</p>
+        </div>
+      </div>
+      <div class="prose">
+        <div class="callout callout-info">
+          <div class="callout-title">ℹ️ Система звань ЗСУ</div>
+          <p>ЗСУ мають <strong>44 звання</strong> (22 армійських + 22 корабельних, нижче наведено армійські). Сучасна система діє з 2020 р. Виключено звання «генерал-полковник» (ті, хто мав — зберегли його). Логіка погонів: <strong>більше зірок = вище звання</strong>. Вищий офіцерський склад впізнається за <strong>схрещеними булавами</strong> на погонах — давній символ козацьких гетьманів і отаманів.</p>
+        </div>
+
+        <div class="norm-block-title">Рядовий, сержантський та офіцерський склад (22 звання)</div>
+        <div class="rank-grid">
+<div class="rank-card">
+      <div class="rank-group">Початкове</div>
+      <div class="rank-name">Рекрут</div>
+      <div class="rank-sub">До складання присяги. Без знаків розрізнення</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Рядовий</div>
+      <div class="rank-name">Солдат</div>
+      <div class="rank-sub">Пустий погон або мінімальний знак</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Рядовий</div>
+      <div class="rank-name">Старший солдат</div>
+      <div class="rank-sub">1 шеврон</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Молодший сержантський</div>
+      <div class="rank-name">Молодший сержант</div>
+      <div class="rank-sub">Командир відділення, мінометного розрахунку</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Молодший сержантський</div>
+      <div class="rank-name">Сержант</div>
+      <div class="rank-sub">Командир БМП, танка, SAU</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Старший сержантський</div>
+      <div class="rank-name">Старший сержант</div>
+      <div class="rank-sub">Головний сержант взводу</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Старший сержантський</div>
+      <div class="rank-name">Головний сержант</div>
+      <div class="rank-sub">Гол. сержант роти / батареї</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Старший сержантський</div>
+      <div class="rank-name">Штаб-сержант</div>
+      <div class="rank-sub">Гол. сержант батальйону / дивізіону</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий сержантський</div>
+      <div class="rank-name">Майстер-сержант</div>
+      <div class="rank-sub">Гол. сержант полку / бригади</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий сержантський</div>
+      <div class="rank-name">Старший майстер-сержант</div>
+      <div class="rank-sub">Гол. сержант роду військ / оперативного командування</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий сержантський</div>
+      <div class="rank-name">Головний майстер-сержант</div>
+      <div class="rank-sub">Гол. сержант ЗСУ / виду / Генштабу</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Молодший офіцерський</div>
+      <div class="rank-name">Молодший лейтенант</div>
+      <div class="rank-sub">1 зірка. Командир взводу (початковий)</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Молодший офіцерський</div>
+      <div class="rank-name">Лейтенант</div>
+      <div class="rank-sub">2 зірки. Командир взводу</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Молодший офіцерський</div>
+      <div class="rank-name">Старший лейтенант</div>
+      <div class="rank-sub">3 зірки. Заст. командира роти</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Молодший офіцерський</div>
+      <div class="rank-name">Капітан</div>
+      <div class="rank-sub">4 зірки. Командир роти / батареї</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Старший офіцерський</div>
+      <div class="rank-name">Майор</div>
+      <div class="rank-sub">1 зірка + просвіт. Заст. командира батальйону</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Старший офіцерський</div>
+      <div class="rank-name">Підполковник</div>
+      <div class="rank-sub">2 зірки + просвіт. Командир батальйону</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Старший офіцерський</div>
+      <div class="rank-name">Полковник</div>
+      <div class="rank-sub">3 зірки + просвіт. Командир полку / бригади</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий офіцерський</div>
+      <div class="rank-name">Бригадний генерал</div>
+      <div class="rank-sub">1 зірка + булави. Заст. командира корпусу</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий офіцерський</div>
+      <div class="rank-name">Генерал-майор</div>
+      <div class="rank-sub">2 зірки + булави. Командир корпусу</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий офіцерський</div>
+      <div class="rank-name">Генерал-лейтенант</div>
+      <div class="rank-sub">3 зірки + булави. Командувач оперативного командування</div>
+    </div>
+<div class="rank-card">
+      <div class="rank-group">Вищий офіцерський</div>
+      <div class="rank-name">Генерал</div>
+      <div class="rank-sub">4 зірки + булави. Найвище армійське звання (з 2020)</div>
+    </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section" id="g-znaky">
+      <div class="section-header">
+        <div class="section-num">Г.2</div>
+        <div>
+          <h2>Тактичні умовні знаки NATO (роди військ)</h2>
+          <p>10 клас, модуль 2 · Тактичні карти та умовні знаки</p>
+        </div>
+      </div>
+      <div class="prose">
+<div class="norm-block-title">Принципи читання тактичних знаків</div><div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>Параметр</th><th>Як позначається</th><th>Деталі</th></tr></thead>
+            <tbody>
+            <tr><td>Приналежність</td><td>Форма рамки символу</td><td>Сині — свої (NATO, ЗСУ). Червоні — ворог. Жовті — невстановлена приналежність. Зелені — нейтральні</td></tr>
+            <tr><td>Розмір формування</td><td>Знаки над рамкою (Х, ІІ, ●●●)</td><td>Від Ø (вогнева група) до ХХХХ (армія)</td></tr>
+            <tr><td>Рід / функція</td><td>Символ всередині рамки</td><td>18 основних символів родів</td></tr>
+            <tr><td>Штаб</td><td>Прапорець — «держак» вказує на місце розташування</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div><div class="norm-block-title">18 основних тактичних знаків (логіка запам'ятовування)</div><div class="table-wrap">
+          <table class="data-table">
+            <thead><tr><th>#</th><th>Рід / функція</th><th>Символ</th><th>Логіка запам'ятовування</th></tr></thead>
+            <tbody>
+            <tr><td class="num-cell">1</td><td>Піхота</td><td class="num-cell">✕</td><td>Перехрещені ремені-патронташі на грудях</td></tr>
+            <tr><td class="num-cell">2</td><td>Бронетехніка / Танки</td><td class="num-cell">⌒</td><td>Нагадує гусеницю танка</td></tr>
+            <tr><td class="num-cell">3</td><td>Артилерія</td><td class="num-cell">●</td><td>Артилерійське ядро або профіль гарматного дула</td></tr>
+            <tr><td class="num-cell">4</td><td>Розвідка / Кавалерія</td><td class="num-cell">⌒/</td><td>Старий ремінь кавалериста з шаблею</td></tr>
+            <tr><td class="num-cell">5</td><td>Інженери / Сапери</td><td class="num-cell">E</td><td>Блоки блокпоста або перша буква «Engineer»</td></tr>
+            <tr><td class="num-cell">6</td><td>Зв'язок</td><td class="num-cell">⚡</td><td>Блискавка або електричний дріт</td></tr>
+            <tr><td class="num-cell">7</td><td>Протитанкові</td><td class="num-cell">∇</td><td>Кумулятивна воронка</td></tr>
+            <tr><td class="num-cell">8</td><td>Ракетні</td><td class="num-cell">↑</td><td>Боєголовка ракети</td></tr>
+            <tr><td class="num-cell">9</td><td>Міномети</td><td class="num-cell">↑↑</td><td>Міномети стріляють майже вертикально — до 85°</td></tr>
+            <tr><td class="num-cell">10</td><td>Гелікоптери</td><td class="num-cell">⊕</td><td>Вид гелікоптера зверху</td></tr>
+            <tr><td class="num-cell">11</td><td>Літаки</td><td class="num-cell">✈</td><td>Профіль гвинтового літака</td></tr>
+            <tr><td class="num-cell">12</td><td>Безпілотники</td><td class="num-cell">○</td><td>Схема БпЛА (позначаються всі, не лише повітряні)</td></tr>
+            <tr><td class="num-cell">13</td><td>ППО</td><td class="num-cell">☂</td><td>Парасолька — ППО захищає від ударів з неба</td></tr>
+            <tr><td class="num-cell">14</td><td>Постачання / Логістика</td><td class="num-cell">═</td><td>Полиця на складі</td></tr>
+            <tr><td class="num-cell">15</td><td>Автомобільні</td><td class="num-cell">○</td><td>Колесо автомобіля</td></tr>
+            <tr><td class="num-cell">16</td><td>Ремонтно-відновлювальні</td><td class="num-cell">🔧</td><td>Гайковий ключ</td></tr>
+            <tr><td class="num-cell">17</td><td>РХБЗ</td><td class="num-cell">⚗⚗</td><td>Перехрещені реторти — хімічний посуд</td></tr>
+            <tr><td class="num-cell">18</td><td>Медичні</td><td class="num-cell">✚</td><td>Медичний хрест</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic-section" id="g-alphabet">
+      <div class="section-header">
+        <div class="section-num">Г.3</div>
+        <div>
+          <h2>Фонетичний алфавіт NATO</h2>
+          <p>10 клас, модуль 4 · Радіозв'язок на полі бою</p>
+        </div>
+      </div>
+      <div class="prose">
+        <p>При передачі координат і літерних кодів кожна літера замінюється стандартним словом — це виключає плутанину схожих за звучанням літер в умовах радіозавад і стресу.</p>
+
+        <div class="phon-grid">
+<div class="phon-card">
+      <div class="phon-letter">A</div>
+      <div class="phon-word">Alpha</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">B</div>
+      <div class="phon-word">Bravo</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">C</div>
+      <div class="phon-word">Charlie</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">D</div>
+      <div class="phon-word">Delta</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">E</div>
+      <div class="phon-word">Echo</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">F</div>
+      <div class="phon-word">Foxtrot</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">G</div>
+      <div class="phon-word">Golf</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">H</div>
+      <div class="phon-word">Hotel</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">I</div>
+      <div class="phon-word">India</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">J</div>
+      <div class="phon-word">Juliet</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">K</div>
+      <div class="phon-word">Kilo</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">L</div>
+      <div class="phon-word">Lima</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">M</div>
+      <div class="phon-word">Mike</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">N</div>
+      <div class="phon-word">November</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">O</div>
+      <div class="phon-word">Oscar</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">P</div>
+      <div class="phon-word">Papa</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">Q</div>
+      <div class="phon-word">Quebec</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">R</div>
+      <div class="phon-word">Romeo</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">S</div>
+      <div class="phon-word">Sierra</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">T</div>
+      <div class="phon-word">Tango</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">U</div>
+      <div class="phon-word">Uniform</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">V</div>
+      <div class="phon-word">Victor</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">W</div>
+      <div class="phon-word">Whiskey</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">X</div>
+      <div class="phon-word">X-ray</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">Y</div>
+      <div class="phon-word">Yankee</div>
+    </div>
+<div class="phon-card">
+      <div class="phon-letter">Z</div>
+      <div class="phon-word">Zulu</div>
+    </div>
+        </div>
+
+        <div class="callout callout-tip">
+          <div class="callout-title">💡 Практичні нюанси передачі</div>
+          <p>Цифри передаються поодинці: <strong>9 — «найнер»</strong> (а не «найн», щоб не плутати з «п'ять»). Квадрат «NF» у фонетичному форматі звучить як «Новембер-Фокстрот».</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="page-nav">
+      <a href="../index.html">← На головну довідника</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
